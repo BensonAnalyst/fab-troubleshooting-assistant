@@ -264,17 +264,22 @@ def build_eval(rng, tools, events, rc_by_id):
         })
 
     # Aggregate questions: retrieval is the wrong tool, a SQL query over the events table is right.
+    # Answers use only what the assistant can see (engineer-entered codes in silver_ooc_events),
+    # never the hidden ground truth.
     q2 = [e for e in events if e["tool_id"] == "CMP-02" and "2025-04-01" <= e["event_ts"] < "2025-07-01"]
-    etch02 = [e["downtime_hours"] for e in events if e["_true_rc"] == "RC-ETCH-02"]
-    cmp25 = Counter(e["_true_rc"] for e in events if e["module"] == "CMP" and e["event_ts"].startswith("2025"))
+    etch02 = [e["downtime_hours"] for e in events if e["root_cause_code"] == "RC-ETCH-02"]
+    cmp25 = Counter(e["root_cause_code"] for e in events
+                    if e["module"] == "CMP" and e["event_ts"].startswith("2025") and e["root_cause_code"])
     top_rc, top_n = cmp25.most_common(1)[0]
     aggregates = [
         ("How many OOC events did CMP-02 have in Q2 2025?", str(len(q2)),
-         "SELECT COUNT(*) FROM silver_ooc_events WHERE tool_id = 'CMP-02' AND event_ts >= '2025-04-01' AND event_ts < '2025-07-01'"),
+         "SELECT COUNT(*) FROM silver_ooc_events WHERE tool_id = 'CMP-02' "
+         "AND event_ts >= '2025-04-01' AND event_ts < '2025-07-01'"),
         ("What is the average downtime for focus ring erosion events?", f"{sum(etch02) / len(etch02):.1f} hours",
-         "SELECT ROUND(AVG(downtime_hours), 1) FROM ooc_ground_truth WHERE true_root_cause = 'RC-ETCH-02'"),
+         "SELECT ROUND(AVG(downtime_hours), 1) FROM silver_ooc_events WHERE root_cause_code = 'RC-ETCH-02'"),
         ("What was the most common root cause on CMP tools in 2025?", f"{top_rc} ({top_n} events)",
-         "SELECT true_root_cause, COUNT(*) n FROM ooc_ground_truth WHERE module = 'CMP' AND event_ts LIKE '2025%' GROUP BY 1 ORDER BY n DESC LIMIT 1"),
+         "SELECT root_cause_code, COUNT(*) AS n FROM silver_ooc_events WHERE module = 'CMP' "
+         "AND year(event_ts) = 2025 AND root_cause_code IS NOT NULL GROUP BY 1 ORDER BY n DESC LIMIT 1"),
     ]
     for question, answer, sql in aggregates:
         questions.append({

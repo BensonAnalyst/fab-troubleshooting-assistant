@@ -71,3 +71,28 @@ def test_dq_scorecard(built):
     assert row["ooc_events"] == 450
     assert row["indexable_events"] == 450 - row["low_quality_notes"]
     assert row["sop_documents"] == len(ROOT_CAUSES) + 1
+
+
+def test_gold_tables(built):
+    from fabrag.gold import gold_event_chunks, gold_sop_chunks
+    _, events, sections = built
+    ge = gold_event_chunks(events)
+    gs = gold_sop_chunks(sections)
+    assert ge.count() == events.where("is_indexable").count()
+    assert ge.select("event_id").distinct().count() == ge.count()
+    assert {r[0] for r in gs.select("module_code").distinct().collect()} == {"ETCH", "CVD", "CMP", "LITH", "WET", "ANY"}
+    assert gs.where("sop_id IN ('SOP-MET-001', 'SOP-GEN-001', 'SOP-GEN-002') AND module_code != 'ANY'").count() == 0
+
+
+def test_aggregate_reference_sql_matches_expected_answers(spark, built):
+    import json
+    out, events, _ = built
+    events.createOrReplaceTempView("silver_ooc_events")
+    questions = [json.loads(l) for l in (out / "eval" / "eval_questions.jsonl").read_text().splitlines()]
+    for q in (q for q in questions if q["type"] == "aggregate"):
+        row = spark.sql(q["reference_sql"]).first()
+        expected = q["expected_answer_points"][0]
+        if len(row) == 1:
+            assert expected.split()[0] == f"{row[0]}", (q["question"], row, expected)
+        else:
+            assert expected == f"{row[0]} ({row[1]} events)", (q["question"], row, expected)

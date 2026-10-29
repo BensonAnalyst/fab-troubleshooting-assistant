@@ -2,11 +2,11 @@
 
 **An assistant that answers "this tool just went out of control, what do I check?" by retrieving the right SOP and the past OOC cases that were fixed the same way, and citing both.**
 
-> **Status: Week 1 of 3 complete** (dataset, Bronze/Silver tables, evaluation set). Retrieval and generation (Week 2) and evaluation results (Week 3) are in progress. Every number below comes from the synthetic data and is labelled as such.
+> **Status: Week 2 of 3 complete.** Data layer, AI Search indexes, and an assistant that answers with citations, routes counting questions to SQL and declines what it can't support. Week 3 adds LLM-judged answer quality and harder test questions. Every number below comes from synthetic data and is labelled as such.
 
 When an SPC chart goes out of control on the fab floor, the fix is usually already known: it sits in an SOP, or in a closure note someone wrote six months ago on the same tool. The problem is finding it. Closure notes are free text full of shorthand, searched by keyword if at all, and around 1 in 10 says nothing useful ("fixed", "see shift log"). Engineers lose time, and the same root cause gets rediscovered from scratch.
 
-This project builds the data layer and evaluation harness for a retrieval-augmented assistant over two sources:
+This project is a retrieval-augmented (RAG) assistant over two sources:
 
 1. **SOPs**: 23 troubleshooting and response procedures, split into section-level chunks.
 2. **Past OOC events**: 450 SPC out-of-control events with engineer closure notes, so the assistant can say *"ETCH-03 had this twice before; both times it was the He seal o-ring."*
@@ -31,24 +31,25 @@ This project builds the data layer and evaluation harness for a retrieval-augmen
 
 ```mermaid
 flowchart LR
-  subgraph W1["Week 1 (done)"]
+  subgraph Data["Data layer (Week 1)"]
     G[generate.py<br/>synthetic fab data] --> V[(UC Volume<br/>CSV + Markdown)]
-    V --> B[(Bronze<br/>raw, all strings, lineage)]
-    B --> S1[(silver_ooc_events<br/>typed, note quality,<br/>retrieval_text)]
+    V --> B[(Bronze<br/>raw, lineage)]
+    B --> S1[(silver_ooc_events<br/>typed, note quality)]
     B --> S2[(silver_sop_sections<br/>1 chunk per section)]
-    S1 --> DQ[(dq_scorecard)]
-    S2 --> DQ
   end
-  subgraph W2["Week 2 (in progress)"]
-    S1 -.->|is_indexable only| VS[Vector Search index]
-    S2 -.-> VS
-    VS -.-> R[Retriever + LLM<br/>answers with citations]
-    S1 -.-> SQL[SQL tool for<br/>counting questions]
+  subgraph Retrieval["Retrieval (Week 2)"]
+    S1 -->|usable notes only| GE[(gold_event_chunks)]
+    S2 --> GS[(gold_sop_chunks)]
+    GE --> IE[AI Search index<br/>hybrid: vectors + keywords]
+    GS --> IS[AI Search index<br/>hybrid: vectors + keywords]
   end
-  subgraph W3["Week 3"]
-    E[eval_questions.jsonl<br/>49 questions] -.-> M[MLflow evaluation<br/>retrieval + answer quality]
-    R -.-> M
-  end
+  Q[Engineer's question] --> RT{Router}
+  RT -->|"how many / average / most common"| SQL[Text-to-SQL<br/>read-only guard] --> S1
+  RT -->|everything else| F[Filters: module,<br/>tool for history] --> IS & IE
+  IS & IE --> LLM[Chat model<br/>answers only from sources,<br/>cites S1/E1, or declines]
+  LLM --> A[Answer + citations]
+  SQL --> A
+  A --> EV[eval_predictions<br/>49-question scoring]
 ```
 
 ---
@@ -79,6 +80,33 @@ Example closure notes:
 >
 > `thickness uniformity (1-sigma) ooc on cvd-03-a (rule 4), value 1.45 %. line heater zone 3 reading low, condensation suspected. replaced line heater jacket, flow stable, mons pass. lot l2523168 released.`
 
+## How the assistant answers (Week 2)
+
+`src/fabrag/assistant.py`, wired to Databricks in `notebooks/03_assistant.py`:
+
+1. **Route.** Counting questions ("how many", "average", "most common") go to **SQL**: an LLM writes one query, a guard allows only a single `SELECT` on `silver_ooc_events` (no writes, no other tables, never the ground truth), and Spark runs it. Everything else goes to retrieval.
+2. **Filter.** A tool ID in the question (`ETCH-04`) restricts SOPs to that module plus the general SOPs, and events to that module. History questions ("has ETCH-03 had this before?") filter events to that exact tool.
+3. **Retrieve.** Top 4 SOP sections and top 5 past events from **AI Search hybrid search**, which combines meaning-based vectors with exact keyword matching. Keywords matter here: `RC-ETCH-03`, `He leak-up` and tool IDs must match exactly.
+4. **Answer.** The chat model (default `databricks-gpt-oss-120b`) answers **only from the numbered sources**, cites them as `[S1]` / `[E2]`, uses a fixed structure (likely cause, checks, fix, release criteria, similar past events), and must reply *"I can't answer that from the knowledge base"* when the sources don't cover the question.
+
+Example question: *"Getting helium flow alarms on ETCH-04 and a few de-chuck errors. What should I check first?"* The answer should name the ESC helium leak, the leak-up test above 1.5 sccm, the o-ring fix and the 1.0 sccm release limit, citing SOP-ETCH-003 and past events.
+
+## Retrieval results
+
+Scored on the 49-question set by `src/fabrag/evaluate.py`. The ground truth is used **only** for scoring.
+
+| Metric | BM25 keyword baseline | AI Search hybrid |
+|---|---|---|
+| Routing accuracy (SQL vs retrieval) | 100% | *run `03_assistant` to fill in* |
+| Right SOP in top 4 | 100% | |
+| Right SOP ranked first | 95% | |
+| Past events with the correct root cause (precision at 5) | 75% | |
+| History questions: past events on that tool found | 94% | |
+| Out-of-scope questions declined | n/a (needs the LLM) | |
+| Answerable questions wrongly declined | n/a (needs the LLM) | |
+
+**What this shows so far:** SOP lookup is easy on this question set; even keyword search gets the right SOP first 95% of the time, because engineers' questions share distinctive words with the SOPs. So SOP hit rate can't show what AI Search adds. The real test is **past-event precision**: closure notes are short, inconsistent shorthand, and only 3 in 4 events keyword search returns share the right root cause. Week 3 adds harder paraphrased questions (synonyms, shorthand, no shared keywords) so the SOP metrics become informative too.
+
 ## The evaluation set
 
 Questions are written the way an engineer on shift asks them, **not** with the SOP's wording, so retrieval has to match meaning rather than copied keywords.
@@ -100,14 +128,17 @@ Each question carries its expected SOP IDs, relevant event IDs and the answer po
 **Locally (tests):**
 ```bash
 pip install -r requirements-dev.txt     # pytest + pyspark (needs Java 17+)
-pytest -q                               # 11 tests: integrity, reproducibility, DQ rules, chunking
+pytest -q                               # 32 tests: data integrity, DQ rules, chunking, routing, SQL guard, assistant
 PYTHONPATH=src python -m fabrag.generate --out data   # regenerate the dataset
 ```
 
-**On Databricks (Week 1 needs only notebooks, a Volume and Delta tables, which Free Edition includes):**
+**On Databricks (tested on Free Edition):**
 1. Add this repo as a Git folder in your workspace.
 2. Create a Volume, for example `workspace.fab_rag.raw`, and upload the repo's `data/` folder into it.
-3. Run `notebooks/01_bronze_silver.py` (widgets: `catalog`, `schema`, `volume`). It creates the Bronze and Silver tables and the DQ scorecard, and enables Change Data Feed on the Silver tables for Vector Search.
+3. Run `notebooks/01_bronze_silver.py`: Bronze and Silver tables plus the DQ scorecard.
+4. Create an AI Search endpoint (Compute → AI Search → Create endpoint, Standard), for example `fab-rag-endpoint`.
+5. Run `notebooks/02_build_index.py`: Gold tables and two Delta Sync indexes with managed `databricks-gte-large-en` embeddings.
+6. Run `notebooks/03_assistant.py`: sample questions, then the full evaluation with the baseline comparison, saved to `eval_predictions`.
 
 ---
 
@@ -119,12 +150,15 @@ PYTHONPATH=src python -m fabrag.generate --out data   # regenerate the dataset
 - **Keep ground truth out of the knowledge base.** The engineer-entered root cause code is indexed (it's real-world data); the true label is held back for scoring only.
 - **Counting questions go to SQL.** Retrieval returns the top few chunks; it cannot count 450 events. The eval set checks that the assistant routes these instead of answering confidently and wrongly.
 - **No Python UDFs in Silver**, so the same transforms run on serverless compute and in local tests.
+- **Hybrid search, not vectors alone.** Fab text is full of exact identifiers (tool IDs, root cause codes, parameter names) that pure embeddings blur together.
+- **Backends are injected.** The assistant takes `search_fn`, `llm_fn` and `sql_fn` as plain functions, so the same code runs on Databricks and in offline tests with a BM25 index and a fake LLM.
+- **Gold tables are MERGEd, not overwritten**, so re-running only re-embeds rows that changed.
 
 ## Roadmap
 
 - [x] **Week 1:** synthetic dataset, SOP library, evaluation set, Bronze/Silver tables, DQ scorecard, tests, CI
-- [ ] **Week 2:** embeddings and Vector Search index (fallback: Chroma/FAISS if Vector Search is not available on the workspace tier), retriever with citations, SQL routing for aggregate questions, simple chat UI
-- [ ] **Week 3:** MLflow evaluation (retrieval hit rate, answer correctness, groundedness, decline rate), comparison of 2 to 3 retrieval settings, measured Before vs After
+- [x] **Week 2:** Gold tables, AI Search hybrid indexes with managed embeddings, assistant with citations, SQL routing with a read-only guard, retrieval metrics against a BM25 baseline
+- [ ] **Week 3:** LLM-judged answer correctness and groundedness in MLflow, harder paraphrased questions, comparison of retrieval settings (hybrid vs vector-only, k, filters), chat UI as a Databricks App, measured Before vs After
 
 ## Limitations
 
@@ -141,8 +175,14 @@ src/fabrag/
   eval_spec.py     hand-written evaluation questions and answer points
   generate.py      builds the dataset (python -m fabrag.generate)
   silver.py        Bronze -> Silver PySpark transforms and DQ scorecard
+  gold.py          Silver -> Gold: the tables the indexes sync from
+  assistant.py     routing, filters, prompt, SQL guard, citations
+  baseline.py      BM25 keyword baseline (and offline search for tests)
+  evaluate.py      routing, retrieval and decline metrics
 notebooks/
-  01_bronze_silver.py   Databricks notebook: Volume -> Bronze -> Silver
+  01_bronze_silver.py   Volume -> Bronze -> Silver
+  02_build_index.py     Gold tables + AI Search indexes
+  03_assistant.py       ask questions, run and score the evaluation set
 data/                   generated dataset (committed, reproducible)
-tests/                  generator and Silver tests
+tests/                  generator, Silver/Gold and assistant tests
 ```
