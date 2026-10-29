@@ -1,0 +1,719 @@
+maint_id,tool_id,chamber,start_ts,maint_type,description,parts_replaced,linked_event_id,technician,duration_hours
+MNT-00001,CMP-03,,2025-01-02 13:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Chen,3.5
+MNT-00002,CVD-04,,2025-01-02 20:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Ahmad,3.9
+MNT-00003,CMP-01,P1,2025-01-05 16:04:18,Unscheduled repair,"OOC response for removal_rate. If the pad is near its life limit, replace the pad and run the pad break-in recipe.",Conditioner disk,OOC-00001,T-Lim,1.9
+MNT-00004,WET-02,,2025-01-06 20:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Ahmad,4.0
+MNT-00005,LITH-01,,2025-01-07 08:42:03,Unscheduled repair,OOC response for overlay_x. Run the stage grid and alignment calibration routines.,,OOC-00003,T-Ahmad,1.9
+MNT-00006,ETCH-03,,2025-01-08 20:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Chen,3.7
+MNT-00007,CVD-01,,2025-01-08 20:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Siti,4.5
+MNT-00008,ETCH-02,,2025-01-09 08:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Kumar,4.6
+MNT-00009,CVD-02,,2025-01-09 13:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Kumar,4.7
+MNT-00010,CVD-03,,2025-01-11 13:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Lim,3.7
+MNT-00011,WET-02,B2,2025-01-11 16:32:37,Unscheduled repair,"OOC response for oxide_etch_rate. Revert the recipe to the last qualified version, or complete the missed requalification.",,OOC-00007,T-Kumar,1.6
+MNT-00012,WET-03,,2025-01-11 20:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Nora,5.9
+MNT-00013,CMP-01,,2025-01-12 13:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Kumar,5.3
+MNT-00014,ETCH-06,B,2025-01-14 16:12:29,Unscheduled repair,"OOC response for etch_rate. Revert the recipe to the last qualified version, or complete the missed requalification.",,OOC-00009,T-Ahmad,1.1
+MNT-00015,CVD-04,A,2025-01-16 07:04:48,Unscheduled repair,OOC response for film_thickness. Replace the ampoule if the level is below 15%.,Line heater jacket,OOC-00010,T-Nora,2.0
+MNT-00016,ETCH-05,,2025-01-16 09:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Nora,5.4
+MNT-00017,CMP-04,,2025-01-16 20:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Siti,4.0
+MNT-00018,ETCH-01,,2025-01-19 09:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Ahmad,4.0
+MNT-00019,ETCH-06,,2025-01-19 09:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Wong,5.3
+MNT-00020,ETCH-02,A,2025-01-19 12:09:23,Unscheduled repair,"OOC response for etch_rate. Under LOTO, reseat and torque RF connectors to specification. Replace any discoloured connector.",Match vacuum capacitor; RF connector (N-type),OOC-00011,T-Lim,1.2
+MNT-00021,LITH-02,,2025-01-20 09:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Raj,4.7
+MNT-00022,ETCH-06,C,2025-01-20 13:43:59,Unscheduled repair,OOC response for endpoint_time. Purge the gas line after any MFC replacement.,Mass flow controller (C4F8 / CF4 / O2 / Ar),OOC-00012,T-Siti,5.1
+MNT-00023,LITH-03,,2025-01-21 08:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Nora,5.7
+MNT-00024,WET-01,,2025-01-22 08:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Chen,4.9
+MNT-00025,LITH-01,,2025-01-22 20:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Siti,4.2
+MNT-00026,CMP-03,P1,2025-01-23 06:25:28,Unscheduled repair,OOC response for scratch_count. Verify slurry flow with the flow-check routine.,POU slurry filter,OOC-00013,T-Chen,2.3
+MNT-00027,CMP-04,P1,2025-01-23 21:47:55,Unscheduled repair,OOC response for removal_rate. Rebuild the carrier head: replace the membrane and retaining ring.,,OOC-00014,T-Chen,4.1
+MNT-00028,ETCH-04,,2025-01-24 09:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Chen,4.6
+MNT-00029,CMP-02,,2025-01-25 09:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Raj,5.0
+MNT-00030,ETCH-02,B,2025-01-27 07:29:47,Unscheduled repair,"OOC response for endpoint_time. If an MFC deviates more than 2% on ROR, recalibrate it; if it deviates more than 5%, replace it.",Mass flow controller (C4F8 / CF4 / O2 / Ar),OOC-00015,T-Wong,3.2
+MNT-00031,ETCH-06,C,2025-01-29 04:24:40,Unscheduled repair,OOC response for cd_uniformity. Replace the He seal o-ring and re-run the leak-up test.,He seal o-ring,OOC-00017,T-Kumar,6.1
+MNT-00032,ETCH-03,B,2025-01-31 11:39:05,Unscheduled repair,"OOC response for endpoint_time. Run 3 monitor wafers. If etch rate is back within +/-3% of baseline, release the chamber.",Chamber liner kit (wet clean only),OOC-00019,T-Ahmad,5.8
+MNT-00033,CMP-03,,2025-02-01 08:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Nora,5.4
+MNT-00034,CVD-03,A,2025-02-02 07:34:27,Unscheduled repair,"OOC response for particle_adders. Run 2 particle monitors. If adders are still high, perform a chamber wet clean.",Chamber lid liner,OOC-00020,T-Ahmad,1.4
+MNT-00035,LITH-03,,2025-02-03 06:58:02,Unscheduled repair,OOC response for overlay_x. Update the overlay correction (APC) parameters after calibration.,,OOC-00021,T-Nora,3.5
+MNT-00036,CVD-04,,2025-02-04 13:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Wong,5.0
+MNT-00037,WET-02,B1,2025-02-04 13:48:22,Unscheduled repair,OOC response for oxide_etch_rate. Run 1 etch rate monitor after the bath stabilises (30 minutes).,,OOC-00022,T-Wong,1.9
+MNT-00038,ETCH-02,,2025-02-05 09:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Kumar,3.3
+MNT-00039,CVD-02,,2025-02-06 09:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Siti,4.6
+MNT-00040,WET-02,,2025-02-06 20:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Nora,3.5
+MNT-00041,WET-03,,2025-02-07 20:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Nora,3.7
+MNT-00042,LITH-01,,2025-02-08 05:19:25,Unscheduled repair,OOC response for cd_mean. Run dose calibration.,,OOC-00024,T-Ahmad,2.8
+MNT-00043,CVD-01,,2025-02-09 09:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Chen,3.1
+MNT-00044,ETCH-03,B,2025-02-09 12:21:52,Unscheduled repair,"OOC response for etch_rate. Pump down, run a leak-up rate check, then run 5 seasoning wafers.",Focus ring (silicon),OOC-00025,T-Siti,1.9
+MNT-00045,ETCH-04,B,2025-02-10 06:40:39,Unscheduled repair,OOC response for endpoint_time. Purge the gas line after any MFC replacement.,Mass flow controller (C4F8 / CF4 / O2 / Ar),OOC-00027,T-Raj,1.6
+MNT-00046,ETCH-02,A,2025-02-10 08:08:50,Unscheduled repair,OOC response for cd_uniformity. Clean the ESC surface with an approved lint-free wipe and IPA. Do not use abrasives.,He seal o-ring; ESC assembly (vendor replacement only),OOC-00028,T-Siti,13.2
+MNT-00047,ETCH-03,,2025-02-10 09:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Wong,5.3
+MNT-00048,WET-03,B2,2025-02-10 10:32:01,Unscheduled repair,OOC response for oxide_etch_rate. Run 1 etch rate monitor after the bath stabilises (30 minutes).,,OOC-00029,T-Raj,2.5
+MNT-00049,LITH-03,,2025-02-10 18:17:26,Unscheduled repair,OOC response for resist_thickness. Clean the dispense nozzle and run a dummy dispense.,Dispense nozzle,OOC-00030,T-Wong,1.9
+MNT-00050,CVD-03,,2025-02-10 20:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Chen,5.1
+MNT-00051,CMP-01,P1,2025-02-11 12:36:02,Unscheduled repair,OOC response for removal_rate. Replace the conditioner disk if at or near its life limit.,Conditioner disk; Polishing pad,OOC-00031,T-Kumar,3.3
+MNT-00052,CMP-01,,2025-02-12 20:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Raj,3.1
+MNT-00053,CMP-02,P2,2025-02-14 03:45:23,Unscheduled repair,OOC response for wiwnu. Hold the tool until requalification passes.,,OOC-00033,T-Ahmad,2.5
+MNT-00054,CMP-02,P2,2025-02-14 22:19:54,Unscheduled repair,"OOC response for scratch_count. Revert the recipe to the last qualified version, or complete the missed requalification.",,OOC-00035,T-Raj,3.1
+MNT-00055,CMP-04,,2025-02-15 09:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Nora,3.1
+MNT-00056,ETCH-06,,2025-02-15 13:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Raj,4.8
+MNT-00057,CMP-01,P1,2025-02-16 13:54:31,Unscheduled repair,OOC response for removal_rate. Verify slurry flow with the flow-check routine.,,OOC-00037,T-Siti,4.4
+MNT-00058,LITH-01,,2025-02-17 10:34:45,Unscheduled repair,OOC response for cd_mean. Run dose calibration.,,OOC-00039,T-Kumar,1.2
+MNT-00059,ETCH-02,A,2025-02-17 12:53:46,Unscheduled repair,OOC response for reflected_power. Run the match auto-tune calibration routine.,Match vacuum capacitor; RF connector (N-type),OOC-00040,T-Ahmad,6.6
+MNT-00060,ETCH-05,,2025-02-17 20:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Siti,3.4
+MNT-00061,LITH-02,,2025-02-19 08:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Kumar,3.1
+MNT-00062,ETCH-03,A,2025-02-19 16:00:53,Unscheduled repair,"OOC response for endpoint_time. Run 3 monitor wafers. If etch rate is back within +/-3% of baseline, release the chamber.",Chamber liner kit (wet clean only),OOC-00041,T-Siti,4.5
+MNT-00063,WET-01,,2025-02-20 08:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Siti,4.7
+MNT-00064,LITH-03,,2025-02-20 09:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Siti,4.0
+MNT-00065,ETCH-01,,2025-02-21 20:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Chen,5.3
+MNT-00066,CMP-02,P1,2025-02-21 20:15:28,Unscheduled repair,"OOC response for removal_rate. If the pad is near its life limit, replace the pad and run the pad break-in recipe.",Polishing pad,OOC-00042,T-Raj,2.3
+MNT-00067,LITH-01,,2025-02-23 08:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Nora,4.7
+MNT-00068,ETCH-05,B,2025-02-23 16:07:36,Unscheduled repair,"OOC response for endpoint_time. Run 3 monitor wafers. If etch rate is back within +/-3% of baseline, release the chamber.",Viewport window (wet clean only),OOC-00043,T-Wong,2.1
+MNT-00069,ETCH-04,,2025-02-24 13:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Lim,4.0
+MNT-00070,CMP-02,,2025-02-27 08:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Lim,3.9
+MNT-00071,LITH-02,,2025-03-02 05:00:00,Unscheduled repair,OOC response for overlay_x. Run the stage grid and alignment calibration routines.,,OOC-00046,T-Lim,3.8
+MNT-00072,CMP-03,,2025-03-02 08:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Chen,5.4
+MNT-00073,LITH-01,,2025-03-03 05:10:46,Unscheduled repair,OOC response for cd_mean. Clean the dispense nozzle and run a dummy dispense.,Dispense nozzle,OOC-00047,T-Siti,2.7
+MNT-00074,CMP-04,P1,2025-03-04 08:18:42,Unscheduled repair,"OOC response for removal_rate. If the pad is near its life limit, replace the pad and run the pad break-in recipe.",Conditioner disk; Polishing pad,OOC-00048,T-Lim,2.6
+MNT-00075,WET-02,,2025-03-05 20:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Siti,3.3
+MNT-00076,CMP-02,P2,2025-03-05 21:58:58,Unscheduled repair,"OOC response for dishing. Revert the recipe to the last qualified version, or complete the missed requalification.",,OOC-00049,T-Chen,4.4
+MNT-00077,CVD-02,,2025-03-06 13:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Siti,4.4
+MNT-00078,CVD-04,,2025-03-08 08:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Kumar,5.5
+MNT-00079,ETCH-02,,2025-03-08 20:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Lim,4.5
+MNT-00080,CMP-04,P2,2025-03-09 20:51:15,Unscheduled repair,"OOC response for removal_rate. If the pad is near its life limit, replace the pad and run the pad break-in recipe.",,OOC-00050,T-Raj,2.9
+MNT-00081,WET-03,,2025-03-10 20:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Ahmad,3.3
+MNT-00082,CVD-03,,2025-03-11 13:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Kumar,4.6
+MNT-00083,CVD-01,,2025-03-11 20:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Kumar,5.3
+MNT-00084,ETCH-04,A,2025-03-12 08:45:58,Unscheduled repair,"OOC response for etch_rate. Run 3 monitor wafers. If etch rate is back within +/-3% of baseline, release the chamber.",Chamber liner kit (wet clean only),OOC-00053,T-Raj,5.5
+MNT-00085,ETCH-03,,2025-03-12 09:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Siti,5.4
+MNT-00086,WET-01,B2,2025-03-13 19:35:30,Unscheduled repair,OOC response for particle_adders. Replace the recirculation filter and flush the loop.,Pump seal kit,OOC-00055,T-Kumar,5.5
+MNT-00087,ETCH-06,,2025-03-14 08:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Chen,3.3
+MNT-00088,ETCH-04,C,2025-03-14 18:34:45,Unscheduled repair,OOC response for etch_rate. Purge the gas line after any MFC replacement.,,OOC-00056,T-Siti,3.9
+MNT-00089,CMP-04,,2025-03-16 13:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Ahmad,3.4
+MNT-00090,CMP-02,P2,2025-03-17 10:35:24,Unscheduled repair,OOC response for removal_rate. Rebuild the carrier head: replace the membrane and retaining ring.,Carrier membrane; Retaining ring,OOC-00057,T-Nora,3.7
+MNT-00091,CMP-01,,2025-03-17 20:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Raj,4.6
+MNT-00092,ETCH-05,,2025-03-21 08:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Wong,3.0
+MNT-00093,LITH-02,,2025-03-22 20:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Wong,5.6
+MNT-00094,CVD-02,A,2025-03-23 06:17:21,Unscheduled repair,OOC response for thickness_uniformity. Repair or replace any line heater below setpoint; cold spots cause condensation.,Line heater jacket; Precursor ampoule,OOC-00059,T-Lim,1.0
+MNT-00095,WET-01,,2025-03-23 08:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Ahmad,4.3
+MNT-00096,ETCH-04,,2025-03-24 08:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Siti,3.8
+MNT-00097,LITH-01,,2025-03-24 08:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Wong,5.2
+MNT-00098,LITH-03,,2025-03-24 20:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Kumar,5.4
+MNT-00099,ETCH-01,,2025-03-25 08:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Lim,4.7
+MNT-00100,CMP-03,,2025-03-29 09:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Kumar,3.4
+MNT-00101,CMP-01,P2,2025-03-30 07:13:00,Unscheduled repair,OOC response for dishing. Clean the pad window; replace the pad if the window is permanently clouded.,,OOC-00061,T-Chen,2.0
+MNT-00102,ETCH-03,A,2025-03-30 17:59:47,Unscheduled repair,OOC response for endpoint_time. Run the O2 dry clean recipe DC-O2-30 followed by 5 seasoning wafers.,Viewport window (wet clean only),OOC-00062,T-Nora,1.9
+MNT-00103,CMP-02,,2025-04-01 09:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Kumar,4.4
+MNT-00104,CVD-01,A,2025-04-02 02:33:35,Unscheduled repair,"OOC response for particle_adders. Run 2 particle monitors. If adders are still high, perform a chamber wet clean.",Lift pin set; Chamber lid liner,OOC-00064,T-Chen,4.5
+MNT-00105,CVD-02,,2025-04-03 13:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Raj,3.5
+MNT-00106,ETCH-02,,2025-04-05 09:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Kumar,4.7
+MNT-00107,CMP-04,P2,2025-04-05 16:11:06,Unscheduled repair,OOC response for wiwnu. Run head calibration (zone pressure) after rebuild.,,OOC-00066,T-Nora,2.3
+MNT-00108,WET-02,,2025-04-07 20:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Kumar,4.9
+MNT-00109,ETCH-03,,2025-04-10 13:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Lim,3.2
+MNT-00110,CVD-04,,2025-04-10 13:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Raj,5.7
+MNT-00111,CMP-01,P2,2025-04-11 05:05:27,Unscheduled repair,OOC response for scratch_count. Replace the POU filter and flush the slurry line.,POU slurry filter,OOC-00068,T-Raj,3.2
+MNT-00112,WET-02,B1,2025-04-11 05:18:42,Unscheduled repair,OOC response for oxide_etch_rate. Change the bath.,,OOC-00067,T-Kumar,3.6
+MNT-00113,CVD-03,,2025-04-11 09:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Raj,5.8
+MNT-00114,WET-03,,2025-04-11 13:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Siti,4.6
+MNT-00115,CVD-01,,2025-04-12 08:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Nora,3.7
+MNT-00116,LITH-03,,2025-04-12 10:35:00,Unscheduled repair,OOC response for cd_mean. Recalibrate the hotplate if uniformity is out.,Dispense nozzle,OOC-00069,T-Siti,3.6
+MNT-00117,ETCH-04,C,2025-04-13 06:54:11,Unscheduled repair,"OOC response for etch_rate. Revert the recipe to the last qualified version, or complete the missed requalification.",,OOC-00070,T-Kumar,4.0
+MNT-00118,CMP-01,,2025-04-14 20:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Kumar,4.9
+MNT-00119,ETCH-06,,2025-04-15 13:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Kumar,5.3
+MNT-00120,CMP-04,,2025-04-17 08:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Chen,4.5
+MNT-00121,ETCH-05,,2025-04-17 20:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Wong,5.1
+MNT-00122,ETCH-03,C,2025-04-18 17:21:13,Unscheduled repair,OOC response for cd_uniformity. Vent the chamber under LOTO and replace the focus ring.,Focus ring (silicon); Ring screws kit,OOC-00072,T-Ahmad,3.9
+MNT-00123,CVD-03,A,2025-04-19 19:13:52,Unscheduled repair,"OOC response for thickness_uniformity. Run 2 thickness monitor wafers. If uniformity has not recovered, perform a showerhead swap PM.",Showerhead (faceplate),OOC-00073,T-Chen,12.9
+MNT-00124,LITH-02,,2025-04-19 20:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Kumar,5.2
+MNT-00125,ETCH-04,C,2025-04-20 10:05:10,Unscheduled repair,"OOC response for endpoint_time. Run 3 monitor wafers. If etch rate is back within +/-3% of baseline, release the chamber.",Viewport window (wet clean only); Chamber liner kit (wet clean only),OOC-00074,T-Lim,3.1
+MNT-00126,CVD-01,B,2025-04-20 16:22:09,Unscheduled repair,"OOC response for particle_adders. Run 2 particle monitors. If adders are still high, perform a chamber wet clean.",Chamber lid liner,OOC-00075,T-Lim,4.6
+MNT-00127,ETCH-04,,2025-04-23 09:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Raj,3.9
+MNT-00128,WET-01,,2025-04-23 09:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Wong,3.8
+MNT-00129,LITH-01,,2025-04-24 13:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Siti,3.9
+MNT-00130,CVD-02,B,2025-04-24 23:27:38,Unscheduled repair,"OOC response for refractive_index. If the thermocouple reads more than 3 C off the reference, recalibrate or replace the thermocouple.",Pedestal heater assembly,OOC-00078,T-Raj,4.1
+MNT-00131,LITH-03,,2025-04-25 13:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Siti,4.8
+MNT-00132,ETCH-04,A,2025-04-25 21:22:54,Unscheduled repair,"OOC response for reflected_power. Under LOTO, reseat and torque RF connectors to specification. Replace any discoloured connector.",RF connector (N-type),OOC-00081,T-Chen,3.9
+MNT-00133,ETCH-01,,2025-04-26 13:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Nora,4.3
+MNT-00134,CMP-02,,2025-04-29 20:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Ahmad,5.0
+MNT-00135,CMP-03,,2025-04-29 20:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Nora,3.0
+MNT-00136,LITH-02,,2025-05-01 10:11:08,Unscheduled repair,OOC response for cd_mean. Clean the dispense nozzle and run a dummy dispense.,Dispense nozzle,OOC-00084,T-Chen,0.8
+MNT-00137,WET-03,B2,2025-05-02 01:27:54,Unscheduled repair,"OOC response for watermark_defects. Revert the recipe to the last qualified version, or complete the missed requalification.",,OOC-00085,T-Wong,1.8
+MNT-00138,ETCH-05,A,2025-05-04 22:18:48,Unscheduled repair,OOC response for etch_rate. Run the match auto-tune calibration routine.,RF match unit; RF connector (N-type),OOC-00086,T-Lim,2.0
+MNT-00139,CVD-02,,2025-05-05 20:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Ahmad,4.0
+MNT-00140,WET-02,,2025-05-08 09:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Wong,5.3
+MNT-00141,ETCH-02,C,2025-05-08 16:38:31,Unscheduled repair,OOC response for endpoint_time. Purge the gas line after any MFC replacement.,Mass flow controller (C4F8 / CF4 / O2 / Ar),OOC-00088,T-Ahmad,2.2
+MNT-00142,ETCH-02,,2025-05-08 20:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Lim,4.9
+MNT-00143,CVD-03,B,2025-05-09 13:34:55,Unscheduled repair,"OOC response for film_stress. If heater zone power is unstable or a zone has failed, replace the heater (pedestal) assembly.",Thermocouple,OOC-00089,T-Nora,3.9
+MNT-00144,CVD-01,,2025-05-09 20:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Wong,4.3
+MNT-00145,ETCH-03,,2025-05-10 09:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Nora,4.9
+MNT-00146,CVD-04,,2025-05-11 13:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Ahmad,5.8
+MNT-00147,WET-03,,2025-05-11 13:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Lim,4.4
+MNT-00148,CVD-03,A,2025-05-13 00:47:56,Unscheduled repair,"OOC response for thickness_uniformity. Revert the recipe to the last qualified version, or complete the missed requalification.",,OOC-00090,T-Siti,4.8
+MNT-00149,CVD-03,,2025-05-14 13:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Raj,5.5
+MNT-00150,ETCH-05,,2025-05-14 20:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Siti,4.8
+MNT-00151,WET-02,B1,2025-05-15 03:16:49,Unscheduled repair,OOC response for watermark_defects. Restore IPA and N2 flow to setpoint (clean or replace the IPA nozzle).,,OOC-00091,T-Ahmad,1.5
+MNT-00152,ETCH-06,,2025-05-16 08:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Ahmad,4.6
+MNT-00153,CMP-01,,2025-05-16 13:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Wong,4.0
+MNT-00154,LITH-02,,2025-05-17 09:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Nora,5.8
+MNT-00155,LITH-03,,2025-05-17 15:31:40,Unscheduled repair,OOC response for cd_mean. Clean the dispense nozzle and run a dummy dispense.,Dispense nozzle,OOC-00093,T-Siti,1.6
+MNT-00156,LITH-03,,2025-05-18 01:19:30,Unscheduled repair,OOC response for overlay_x. Run the stage grid and alignment calibration routines.,,OOC-00094,T-Lim,3.7
+MNT-00157,CMP-04,,2025-05-19 08:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Kumar,5.8
+MNT-00158,CMP-04,P2,2025-05-21 09:20:16,Unscheduled repair,OOC response for wiwnu. Rebuild the carrier head: replace the membrane and retaining ring.,,OOC-00098,T-Kumar,4.0
+MNT-00159,ETCH-03,B,2025-05-21 13:54:53,Unscheduled repair,OOC response for cd_uniformity. Vent the chamber under LOTO and replace the focus ring.,Focus ring (silicon),OOC-00099,T-Raj,5.1
+MNT-00160,ETCH-04,,2025-05-22 08:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Wong,5.0
+MNT-00161,LITH-01,,2025-05-23 20:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Nora,3.1
+MNT-00162,WET-02,B2,2025-05-24 06:09:40,Unscheduled repair,OOC response for oxide_etch_rate. Run 1 etch rate monitor after the bath stabilises (30 minutes).,,OOC-00100,T-Kumar,2.6
+MNT-00163,WET-01,,2025-05-25 09:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Wong,3.7
+MNT-00164,ETCH-01,A,2025-05-27 02:52:50,Unscheduled repair,"OOC response for etch_rate. Pump down, run a leak-up rate check, then run 5 seasoning wafers.",,OOC-00101,T-Chen,2.3
+MNT-00165,CMP-02,,2025-05-27 09:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Siti,3.9
+MNT-00166,LITH-03,,2025-05-28 09:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Raj,4.6
+MNT-00167,ETCH-01,,2025-05-28 13:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Raj,5.9
+MNT-00168,CMP-02,P1,2025-05-31 09:01:01,Unscheduled repair,OOC response for dishing. Clean the pad window; replace the pad if the window is permanently clouded.,Polishing pad (window),OOC-00104,T-Ahmad,3.0
+MNT-00169,CMP-03,,2025-05-31 20:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Chen,5.3
+MNT-00170,ETCH-06,A,2025-06-02 05:33:15,Unscheduled repair,OOC response for etch_rate. Vent the chamber under LOTO and replace the focus ring.,Ring screws kit; Focus ring (silicon),OOC-00105,T-Nora,4.6
+MNT-00171,CVD-04,B,2025-06-02 07:00:17,Unscheduled repair,OOC response for thickness_uniformity. Run an extended in-situ NF3 clean (2x standard time) and a pre-coat.,Showerhead o-ring kit; Showerhead (faceplate),OOC-00106,T-Raj,5.7
+MNT-00172,CVD-02,,2025-06-02 09:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Nora,3.2
+MNT-00173,CMP-02,P2,2025-06-02 10:10:11,Unscheduled repair,OOC response for removal_rate. Run head calibration (zone pressure) after rebuild.,,OOC-00107,T-Siti,4.9
+MNT-00174,ETCH-02,,2025-06-06 09:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Ahmad,4.0
+MNT-00175,CVD-01,,2025-06-08 08:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Siti,4.0
+MNT-00176,WET-02,,2025-06-10 09:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Wong,3.9
+MNT-00177,CVD-04,,2025-06-10 20:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Ahmad,3.2
+MNT-00178,CMP-04,P1,2025-06-11 07:45:28,Unscheduled repair,OOC response for removal_rate. Replace the conditioner disk if at or near its life limit.,Conditioner disk,OOC-00108,T-Wong,1.4
+MNT-00179,WET-03,,2025-06-12 08:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Kumar,5.9
+MNT-00180,ETCH-03,,2025-06-12 09:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Raj,5.6
+MNT-00181,CMP-03,P1,2025-06-12 21:58:29,Unscheduled repair,OOC response for removal_rate. Replace the conditioner disk if at or near its life limit.,Polishing pad,OOC-00109,T-Siti,2.2
+MNT-00182,ETCH-06,,2025-06-14 09:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Raj,5.5
+MNT-00183,LITH-02,,2025-06-14 13:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Raj,3.9
+MNT-00184,CVD-03,,2025-06-14 20:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Nora,5.1
+MNT-00185,CVD-03,A,2025-06-14 21:25:05,Unscheduled repair,"OOC response for refractive_index. If the thermocouple reads more than 3 C off the reference, recalibrate or replace the thermocouple.",Thermocouple,OOC-00110,T-Kumar,15.8
+MNT-00186,ETCH-05,,2025-06-15 09:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Kumar,4.5
+MNT-00187,CMP-03,P1,2025-06-15 14:09:50,Unscheduled repair,OOC response for wiwnu. Run head calibration (zone pressure) after rebuild.,Carrier membrane,OOC-00112,T-Siti,4.9
+MNT-00188,CMP-01,,2025-06-16 13:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Lim,4.5
+MNT-00189,CMP-02,P2,2025-06-17 14:27:22,Unscheduled repair,OOC response for wiwnu. Run head calibration (zone pressure) after rebuild.,Carrier membrane,OOC-00113,T-Raj,2.3
+MNT-00190,ETCH-04,,2025-06-19 08:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Wong,4.7
+MNT-00191,CMP-04,,2025-06-20 13:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Chen,4.2
+MNT-00192,ETCH-02,A,2025-06-20 17:15:58,Unscheduled repair,"OOC response for endpoint_time. Run 3 monitor wafers. If etch rate is back within +/-3% of baseline, release the chamber.",,OOC-00114,T-Siti,7.1
+MNT-00193,CVD-02,A,2025-06-21 17:42:11,Unscheduled repair,OOC response for thickness_uniformity. Run an extended in-situ NF3 clean (2x standard time) and a pre-coat.,Showerhead o-ring kit,OOC-00115,T-Kumar,8.1
+MNT-00194,ETCH-05,C,2025-06-22 00:40:54,Unscheduled repair,"OOC response for reflected_power. Under LOTO, reseat and torque RF connectors to specification. Replace any discoloured connector.",RF connector (N-type); Match vacuum capacitor,OOC-00116,T-Chen,4.0
+MNT-00195,LITH-01,,2025-06-23 09:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Kumar,4.7
+MNT-00196,CMP-04,P2,2025-06-23 22:37:09,Unscheduled repair,OOC response for removal_rate. Replace the conditioner disk if at or near its life limit.,Conditioner disk; Polishing pad,OOC-00118,T-Nora,1.5
+MNT-00197,CMP-02,,2025-06-24 09:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Wong,4.3
+MNT-00198,LITH-03,,2025-06-24 09:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Kumar,4.7
+MNT-00199,CVD-03,A,2025-06-24 20:57:42,Unscheduled repair,OOC response for thickness_uniformity. Repair or replace any line heater below setpoint; cold spots cause condensation.,,OOC-00119,T-Raj,0.9
+MNT-00200,WET-01,,2025-06-26 20:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Raj,3.1
+MNT-00201,ETCH-01,,2025-06-27 09:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Raj,5.7
+MNT-00202,CVD-02,,2025-06-29 13:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Wong,3.6
+MNT-00203,CMP-03,,2025-06-29 20:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Siti,5.2
+MNT-00204,CVD-01,B,2025-06-30 14:38:06,Unscheduled repair,OOC response for thickness_uniformity. Replace the ampoule if the level is below 15%.,,OOC-00123,T-Lim,2.5
+MNT-00205,WET-03,B1,2025-07-01 22:36:11,Unscheduled repair,OOC response for particle_adders. Replace the recirculation filter and flush the loop.,Recirculation filter; Pump seal kit,OOC-00124,T-Lim,1.2
+MNT-00206,WET-03,B2,2025-07-05 00:11:32,Unscheduled repair,OOC response for oxide_etch_rate. Change the bath.,,OOC-00125,T-Raj,2.0
+MNT-00207,CMP-02,P2,2025-07-05 08:02:22,Unscheduled repair,OOC response for removal_rate. Rebuild the carrier head: replace the membrane and retaining ring.,,OOC-00126,T-Lim,5.1
+MNT-00208,ETCH-03,,2025-07-09 09:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Lim,4.3
+MNT-00209,ETCH-02,,2025-07-09 13:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Kumar,5.9
+MNT-00210,WET-02,,2025-07-09 13:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Nora,3.3
+MNT-00211,WET-01,B2,2025-07-09 18:45:04,Unscheduled repair,OOC response for particle_adders. Replace the pump seal if worn.,Pump seal kit; Recirculation filter,OOC-00129,T-Kumar,2.4
+MNT-00212,CVD-01,B,2025-07-10 07:33:04,Unscheduled repair,OOC response for film_thickness. Run an extended in-situ NF3 clean (2x standard time) and a pre-coat.,Showerhead (faceplate),OOC-00130,T-Ahmad,2.7
+MNT-00213,CVD-01,,2025-07-11 08:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Lim,4.7
+MNT-00214,LITH-02,,2025-07-11 09:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Nora,4.4
+MNT-00215,CMP-03,P1,2025-07-12 07:56:42,Unscheduled repair,OOC response for dishing. Clean the pad window; replace the pad if the window is permanently clouded.,Endpoint light source; Polishing pad (window),OOC-00131,T-Ahmad,2.0
+MNT-00216,CVD-04,A,2025-07-13 04:49:34,Unscheduled repair,"OOC response for film_thickness. Run 2 thickness monitor wafers. If uniformity has not recovered, perform a showerhead swap PM.",Showerhead (faceplate),OOC-00132,T-Lim,5.3
+MNT-00217,CVD-03,,2025-07-13 08:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Chen,5.0
+MNT-00218,CVD-04,,2025-07-13 09:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Siti,3.3
+MNT-00219,ETCH-06,,2025-07-14 09:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Siti,5.4
+MNT-00220,CMP-01,,2025-07-14 13:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Wong,4.4
+MNT-00221,CVD-03,B,2025-07-14 13:56:00,Unscheduled repair,"OOC response for thickness_uniformity. Run 2 thickness monitor wafers. If uniformity has not recovered, perform a showerhead swap PM.",Showerhead (faceplate),OOC-00134,T-Lim,3.3
+MNT-00222,WET-03,,2025-07-14 20:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Raj,5.6
+MNT-00223,ETCH-05,,2025-07-17 09:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Siti,5.5
+MNT-00224,CMP-04,P1,2025-07-18 11:02:21,Unscheduled repair,OOC response for dishing. Recalibrate the endpoint system with the calibration wafer.,Endpoint light source,OOC-00137,T-Kumar,2.5
+MNT-00225,CMP-04,,2025-07-18 13:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Lim,5.5
+MNT-00226,LITH-01,,2025-07-19 23:38:27,Unscheduled repair,OOC response for cd_mean. Recalibrate the hotplate if uniformity is out.,Dispense nozzle,OOC-00138,T-Lim,2.2
+MNT-00227,ETCH-04,,2025-07-20 09:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Ahmad,4.8
+MNT-00228,ETCH-03,B,2025-07-21 19:22:53,Unscheduled repair,OOC response for endpoint_time. Run the O2 dry clean recipe DC-O2-30 followed by 5 seasoning wafers.,Chamber liner kit (wet clean only),OOC-00139,T-Raj,7.1
+MNT-00229,CMP-02,P2,2025-07-22 11:23:30,Unscheduled repair,OOC response for removal_rate. Verify slurry flow with the flow-check routine.,POU slurry filter,OOC-00140,T-Lim,3.5
+MNT-00230,ETCH-05,B,2025-07-22 23:58:40,Unscheduled repair,OOC response for etch_rate. Vent the chamber under LOTO and replace the focus ring.,Focus ring (silicon),OOC-00141,T-Kumar,6.5
+MNT-00231,ETCH-04,C,2025-07-23 05:47:08,Unscheduled repair,"OOC response for particle_adders. Run 3 monitor wafers. If etch rate is back within +/-3% of baseline, release the chamber.",Viewport window (wet clean only),OOC-00142,T-Chen,5.7
+MNT-00232,LITH-01,,2025-07-23 08:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Siti,4.7
+MNT-00233,LITH-01,,2025-07-25 09:44:58,Unscheduled repair,OOC response for overlay_y. Update the overlay correction (APC) parameters after calibration.,,OOC-00144,T-Raj,6.4
+MNT-00234,CMP-02,,2025-07-26 09:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Raj,5.1
+MNT-00235,ETCH-01,,2025-07-26 13:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Lim,6.0
+MNT-00236,LITH-03,,2025-07-26 13:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Siti,5.8
+MNT-00237,CVD-02,,2025-07-26 20:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Kumar,3.3
+MNT-00238,CMP-03,,2025-07-26 20:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Kumar,5.3
+MNT-00239,LITH-01,,2025-07-26 21:16:02,Unscheduled repair,OOC response for focus_error. Run a focus monitor wafer to confirm the hot spot is gone.,Chuck cleaning stone,OOC-00145,T-Nora,2.2
+MNT-00240,LITH-02,,2025-07-27 10:10:41,Unscheduled repair,"OOC response for cd_mean. If laser energy is unstable, raise a laser service request.",,OOC-00147,T-Wong,3.9
+MNT-00241,WET-01,,2025-07-27 13:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Siti,3.3
+MNT-00242,CMP-03,P1,2025-08-02 16:46:15,Unscheduled repair,OOC response for scratch_count. Verify slurry flow with the flow-check routine.,POU slurry filter,OOC-00148,T-Nora,2.2
+MNT-00243,WET-03,B1,2025-08-05 09:08:06,Unscheduled repair,"OOC response for watermark_defects. If DI resistivity is low, raise a facilities request.",IPA nozzle,OOC-00150,T-Nora,2.1
+MNT-00244,WET-02,,2025-08-07 09:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Raj,4.0
+MNT-00245,CVD-01,,2025-08-08 20:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Wong,3.3
+MNT-00246,CVD-03,,2025-08-10 08:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Kumar,5.6
+MNT-00247,CMP-01,,2025-08-10 08:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Raj,4.4
+MNT-00248,ETCH-02,,2025-08-10 13:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Nora,5.8
+MNT-00249,ETCH-03,,2025-08-11 20:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Lim,3.4
+MNT-00250,CVD-04,,2025-08-12 08:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Siti,4.8
+MNT-00251,ETCH-06,,2025-08-12 13:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Chen,3.6
+MNT-00252,LITH-02,,2025-08-12 20:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Wong,5.4
+MNT-00253,WET-03,,2025-08-14 13:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Wong,4.7
+MNT-00254,CVD-04,B,2025-08-15 01:47:54,Unscheduled repair,OOC response for film_thickness. Replace the ampoule if the level is below 15%.,,OOC-00155,T-Lim,1.9
+MNT-00255,ETCH-05,,2025-08-15 20:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Nora,5.4
+MNT-00256,ETCH-04,,2025-08-16 09:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Ahmad,4.5
+MNT-00257,CMP-02,P2,2025-08-17 02:08:23,Unscheduled repair,"OOC response for removal_rate. If the pad is near its life limit, replace the pad and run the pad break-in recipe.",,OOC-00156,T-Kumar,2.5
+MNT-00258,CMP-04,,2025-08-17 08:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Wong,4.7
+MNT-00259,CVD-02,A,2025-08-19 21:52:20,Unscheduled repair,OOC response for film_thickness. Repair or replace any line heater below setpoint; cold spots cause condensation.,,OOC-00157,T-Raj,2.1
+MNT-00260,ETCH-06,B,2025-08-20 00:02:05,Unscheduled repair,OOC response for particle_adders. Run the O2 dry clean recipe DC-O2-30 followed by 5 seasoning wafers.,Chamber liner kit (wet clean only),OOC-00158,T-Chen,3.8
+MNT-00261,LITH-01,,2025-08-22 09:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Chen,5.8
+MNT-00262,LITH-03,,2025-08-23 13:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Nora,5.1
+MNT-00263,WET-01,,2025-08-24 08:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Raj,4.6
+MNT-00264,CVD-01,B,2025-08-25 11:37:19,Unscheduled repair,"OOC response for film_thickness. Run 2 thickness monitor wafers. If uniformity has not recovered, perform a showerhead swap PM.",Showerhead o-ring kit,OOC-00159,T-Chen,9.0
+MNT-00265,CVD-02,,2025-08-26 20:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Raj,3.2
+MNT-00266,CMP-02,P2,2025-08-27 04:09:57,Unscheduled repair,OOC response for removal_rate. Run head calibration (zone pressure) after rebuild.,,OOC-00160,T-Lim,2.9
+MNT-00267,CMP-03,,2025-08-27 13:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Kumar,3.3
+MNT-00268,ETCH-01,,2025-08-28 13:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Kumar,4.7
+MNT-00269,CMP-02,,2025-08-28 13:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Ahmad,4.4
+MNT-00270,ETCH-04,B,2025-08-31 14:50:15,Unscheduled repair,OOC response for endpoint_time. Run the O2 dry clean recipe DC-O2-30 followed by 5 seasoning wafers.,Chamber liner kit (wet clean only),OOC-00162,T-Chen,7.7
+MNT-00271,ETCH-03,B,2025-09-01 09:29:53,Unscheduled repair,"OOC response for etch_rate. If an MFC deviates more than 2% on ROR, recalibrate it; if it deviates more than 5%, replace it.",Mass flow controller (C4F8 / CF4 / O2 / Ar),OOC-00163,T-Chen,6.8
+MNT-00272,WET-02,B2,2025-09-01 20:51:56,Unscheduled repair,OOC response for oxide_etch_rate. Run 1 etch rate monitor after the bath stabilises (30 minutes).,,OOC-00164,T-Raj,2.2
+MNT-00273,WET-02,,2025-09-04 20:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Raj,5.6
+MNT-00274,CMP-01,P1,2025-09-04 20:22:13,Unscheduled repair,OOC response for removal_rate. Replace the POU filter and flush the slurry line.,POU slurry filter,OOC-00165,T-Lim,3.3
+MNT-00275,ETCH-03,,2025-09-07 20:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Ahmad,5.1
+MNT-00276,CVD-01,,2025-09-07 20:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Wong,3.2
+MNT-00277,ETCH-02,,2025-09-08 08:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Raj,4.1
+MNT-00278,CMP-01,,2025-09-09 13:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Kumar,4.7
+MNT-00279,LITH-02,,2025-09-11 08:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Kumar,5.6
+MNT-00280,ETCH-05,A,2025-09-11 15:00:48,Unscheduled repair,"OOC response for etch_rate. Under LOTO, reseat and torque RF connectors to specification. Replace any discoloured connector.",Match vacuum capacitor; RF connector (N-type),OOC-00166,T-Kumar,3.2
+MNT-00281,CVD-03,,2025-09-12 13:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Chen,3.6
+MNT-00282,ETCH-06,,2025-09-13 09:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Ahmad,3.1
+MNT-00283,WET-03,,2025-09-13 09:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Kumar,4.7
+MNT-00284,CVD-04,,2025-09-13 20:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Raj,4.9
+MNT-00285,LITH-03,,2025-09-13 23:10:42,Unscheduled repair,OOC response for resist_thickness. Clean the dispense nozzle and run a dummy dispense.,,OOC-00167,T-Kumar,1.4
+MNT-00286,ETCH-05,,2025-09-14 13:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Nora,3.9
+MNT-00287,CMP-04,,2025-09-15 09:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Ahmad,4.1
+MNT-00288,CMP-04,P2,2025-09-18 01:45:37,Unscheduled repair,OOC response for removal_rate. Replace the conditioner disk if at or near its life limit.,Conditioner disk,OOC-00169,T-Wong,1.8
+MNT-00289,ETCH-04,,2025-09-18 08:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Kumar,3.6
+MNT-00290,LITH-01,,2025-09-19 20:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Lim,3.3
+MNT-00291,WET-01,,2025-09-20 09:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Wong,3.7
+MNT-00292,ETCH-04,A,2025-09-23 08:31:53,Unscheduled repair,OOC response for particle_adders. Run the O2 dry clean recipe DC-O2-30 followed by 5 seasoning wafers.,Chamber liner kit (wet clean only),OOC-00172,T-Siti,2.1
+MNT-00293,ETCH-01,,2025-09-24 13:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Kumar,3.8
+MNT-00294,LITH-03,,2025-09-24 13:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Raj,5.2
+MNT-00295,CMP-03,,2025-09-24 20:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Chen,5.6
+MNT-00296,ETCH-05,C,2025-09-25 16:05:49,Unscheduled repair,OOC response for reflected_power. Run the match auto-tune calibration routine.,RF connector (N-type); RF match unit,OOC-00173,T-Lim,1.9
+MNT-00297,CMP-02,,2025-09-26 08:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Nora,4.6
+MNT-00298,LITH-02,,2025-09-27 04:53:27,Unscheduled repair,OOC response for overlay_y. Update the overlay correction (APC) parameters after calibration.,,OOC-00174,T-Chen,3.4
+MNT-00299,CVD-02,,2025-09-27 09:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Kumar,4.9
+MNT-00300,CMP-03,P2,2025-09-28 15:21:24,Unscheduled repair,OOC response for removal_rate. Replace the POU filter and flush the slurry line.,POU slurry filter,OOC-00176,T-Kumar,2.3
+MNT-00301,CMP-04,P1,2025-09-30 01:05:39,Unscheduled repair,"OOC response for removal_rate. If the pad is near its life limit, replace the pad and run the pad break-in recipe.",Conditioner disk,OOC-00177,T-Nora,2.3
+MNT-00302,CVD-01,A,2025-09-30 21:38:06,Unscheduled repair,OOC response for particle_adders. Run an extended clean plus a thicker pre-coat (seasoning) to bury loose deposits.,Chamber lid liner; Lift pin set,OOC-00180,T-Wong,4.1
+MNT-00303,CVD-01,B,2025-10-01 08:12:08,Unscheduled repair,"OOC response for particle_adders. Run 2 particle monitors. If adders are still high, perform a chamber wet clean.",Lift pin set,OOC-00181,T-Raj,7.8
+MNT-00304,ETCH-05,C,2025-10-01 15:22:41,Unscheduled repair,OOC response for endpoint_time. Purge the gas line after any MFC replacement.,,OOC-00182,T-Wong,1.6
+MNT-00305,CMP-04,P1,2025-10-03 12:47:41,Unscheduled repair,OOC response for dishing. Clean the pad window; replace the pad if the window is permanently clouded.,Polishing pad (window),OOC-00183,T-Ahmad,0.6
+MNT-00306,ETCH-03,,2025-10-04 09:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Chen,5.7
+MNT-00307,WET-02,,2025-10-05 09:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Kumar,5.9
+MNT-00308,WET-03,B2,2025-10-07 08:56:50,Unscheduled repair,OOC response for particle_adders. Replace the pump seal if worn.,,OOC-00186,T-Lim,3.2
+MNT-00309,ETCH-02,,2025-10-07 09:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Ahmad,3.3
+MNT-00310,CVD-01,,2025-10-07 13:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Chen,3.9
+MNT-00311,WET-02,B2,2025-10-07 13:17:36,Unscheduled repair,OOC response for particle_adders. Replace the pump seal if worn.,Recirculation filter,OOC-00187,T-Kumar,2.2
+MNT-00312,WET-02,B2,2025-10-08 03:21:57,Unscheduled repair,OOC response for particle_adders. Replace the pump seal if worn.,Pump seal kit; Recirculation filter,OOC-00188,T-Nora,0.8
+MNT-00313,LITH-01,,2025-10-08 06:54:39,Unscheduled repair,OOC response for overlay_y. Hold the tool until requalification passes.,,OOC-00189,T-Ahmad,3.0
+MNT-00314,ETCH-04,A,2025-10-08 23:09:40,Unscheduled repair,"OOC response for he_backside_flow. Revert the recipe to the last qualified version, or complete the missed requalification.",,OOC-00190,T-Nora,3.1
+MNT-00315,LITH-02,,2025-10-09 09:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Nora,5.2
+MNT-00316,ETCH-06,,2025-10-10 08:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Chen,5.4
+MNT-00317,CMP-01,,2025-10-11 08:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Kumar,5.1
+MNT-00318,ETCH-05,,2025-10-12 08:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Siti,4.3
+MNT-00319,CVD-03,,2025-10-13 09:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Chen,4.1
+MNT-00320,ETCH-02,A,2025-10-15 01:57:10,Unscheduled repair,OOC response for endpoint_time. Run the O2 dry clean recipe DC-O2-30 followed by 5 seasoning wafers.,Viewport window (wet clean only); Chamber liner kit (wet clean only),OOC-00193,T-Ahmad,3.1
+MNT-00321,CMP-04,,2025-10-15 09:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Chen,3.8
+MNT-00322,CVD-04,,2025-10-16 08:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Siti,3.8
+MNT-00323,WET-03,,2025-10-16 13:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Siti,5.1
+MNT-00324,LITH-01,,2025-10-17 09:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Lim,4.7
+MNT-00325,WET-01,B1,2025-10-17 09:29:03,Unscheduled repair,OOC response for watermark_defects. Restore IPA and N2 flow to setpoint (clean or replace the IPA nozzle).,,OOC-00194,T-Lim,1.1
+MNT-00326,ETCH-01,C,2025-10-17 22:10:07,Unscheduled repair,OOC response for cd_uniformity. Vent the chamber under LOTO and replace the focus ring.,,OOC-00195,T-Chen,6.0
+MNT-00327,CMP-04,P2,2025-10-19 18:04:54,Unscheduled repair,OOC response for removal_rate. Verify slurry flow with the flow-check routine.,POU slurry filter,OOC-00196,T-Lim,3.4
+MNT-00328,ETCH-04,,2025-10-19 20:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Nora,4.6
+MNT-00329,LITH-03,,2025-10-20 21:19:56,Unscheduled repair,OOC response for focus_error. Run a focus monitor wafer to confirm the hot spot is gone.,Chuck cleaning stone,OOC-00197,T-Kumar,0.6
+MNT-00330,CMP-03,,2025-10-21 09:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Ahmad,4.0
+MNT-00331,ETCH-01,,2025-10-23 08:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Lim,3.9
+MNT-00332,WET-01,,2025-10-23 20:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Nora,3.3
+MNT-00333,ETCH-02,C,2025-10-24 19:07:51,Unscheduled repair,OOC response for cd_uniformity. Vent the chamber under LOTO and replace the focus ring.,Focus ring (silicon); Ring screws kit,OOC-00198,T-Siti,4.0
+MNT-00334,CVD-02,,2025-10-25 13:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Siti,5.5
+MNT-00335,CMP-02,,2025-10-26 09:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Nora,5.0
+MNT-00336,LITH-03,,2025-10-26 09:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Raj,4.8
+MNT-00337,CMP-02,P2,2025-10-27 10:12:42,Unscheduled repair,OOC response for wiwnu. Run head calibration (zone pressure) after rebuild.,Carrier membrane,OOC-00199,T-Ahmad,5.8
+MNT-00338,LITH-03,,2025-10-31 13:11:38,Unscheduled repair,"OOC response for cd_mean. If laser energy is unstable, raise a laser service request.",,OOC-00201,T-Nora,3.6
+MNT-00339,CMP-01,P2,2025-10-31 14:38:42,Unscheduled repair,OOC response for removal_rate. Replace the conditioner disk if at or near its life limit.,Polishing pad; Conditioner disk,OOC-00202,T-Lim,1.8
+MNT-00340,ETCH-03,,2025-11-02 09:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Chen,5.1
+MNT-00341,LITH-02,,2025-11-02 14:39:09,Unscheduled repair,OOC response for cd_mean. Recalibrate the hotplate if uniformity is out.,Dispense nozzle,OOC-00203,T-Wong,3.5
+MNT-00342,CMP-02,P1,2025-11-02 16:31:52,Unscheduled repair,"OOC response for wiwnu. Revert the recipe to the last qualified version, or complete the missed requalification.",,OOC-00204,T-Chen,0.9
+MNT-00343,ETCH-02,,2025-11-04 13:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Kumar,5.8
+MNT-00344,WET-02,,2025-11-04 20:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Siti,3.7
+MNT-00345,LITH-02,,2025-11-05 08:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Ahmad,5.0
+MNT-00346,CVD-01,,2025-11-05 09:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Ahmad,4.0
+MNT-00347,ETCH-06,,2025-11-06 09:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Siti,3.9
+MNT-00348,CMP-01,P1,2025-11-07 15:52:58,Unscheduled repair,OOC response for removal_rate. Verify slurry flow with the flow-check routine.,POU slurry filter,OOC-00207,T-Raj,2.0
+MNT-00349,CMP-01,P2,2025-11-08 22:43:32,Unscheduled repair,OOC response for removal_rate. Replace the conditioner disk if at or near its life limit.,Conditioner disk; Polishing pad,OOC-00208,T-Raj,2.3
+MNT-00350,ETCH-05,,2025-11-11 13:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Wong,5.0
+MNT-00351,CMP-01,,2025-11-12 13:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Ahmad,3.5
+MNT-00352,WET-03,,2025-11-13 08:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Kumar,5.9
+MNT-00353,CVD-03,,2025-11-14 08:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Wong,4.3
+MNT-00354,CVD-04,,2025-11-14 08:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Kumar,4.4
+MNT-00355,LITH-01,,2025-11-14 09:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Chen,4.7
+MNT-00356,ETCH-02,A,2025-11-15 01:19:39,Unscheduled repair,OOC response for endpoint_time. Run the O2 dry clean recipe DC-O2-30 followed by 5 seasoning wafers.,Chamber liner kit (wet clean only),OOC-00211,T-Nora,3.2
+MNT-00357,CVD-01,B,2025-11-15 22:22:36,Unscheduled repair,"OOC response for film_thickness. Run 2 thickness monitor wafers. If uniformity has not recovered, perform a showerhead swap PM.",,OOC-00212,T-Siti,3.6
+MNT-00358,CMP-04,,2025-11-16 09:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Siti,4.5
+MNT-00359,ETCH-03,C,2025-11-17 21:07:30,Unscheduled repair,"OOC response for etch_rate. If an MFC deviates more than 2% on ROR, recalibrate it; if it deviates more than 5%, replace it.",Mass flow controller (C4F8 / CF4 / O2 / Ar),OOC-00213,T-Ahmad,1.7
+MNT-00360,CMP-02,P1,2025-11-18 18:02:07,Unscheduled repair,OOC response for removal_rate. Replace the conditioner disk if at or near its life limit.,Polishing pad,OOC-00215,T-Kumar,1.1
+MNT-00361,CVD-04,B,2025-11-19 02:55:17,Unscheduled repair,"OOC response for film_stress. If heater zone power is unstable or a zone has failed, replace the heater (pedestal) assembly.",,OOC-00216,T-Kumar,9.1
+MNT-00362,ETCH-04,,2025-11-21 20:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Siti,5.8
+MNT-00363,CMP-03,,2025-11-22 13:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Wong,4.5
+MNT-00364,ETCH-02,C,2025-11-23 05:40:20,Unscheduled repair,OOC response for he_backside_flow. Replace the He seal o-ring and re-run the leak-up test.,ESC assembly (vendor replacement only); He seal o-ring,OOC-00218,T-Kumar,2.4
+MNT-00365,ETCH-01,A,2025-11-23 12:39:25,Unscheduled repair,OOC response for particle_adders. Run the O2 dry clean recipe DC-O2-30 followed by 5 seasoning wafers.,Chamber liner kit (wet clean only),OOC-00219,T-Nora,3.7
+MNT-00366,ETCH-01,,2025-11-24 13:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Siti,5.5
+MNT-00367,CVD-03,A,2025-11-24 13:02:13,Unscheduled repair,"OOC response for film_thickness. Run 2 thickness monitor wafers. If uniformity has not recovered, perform a showerhead swap PM.",Showerhead o-ring kit,OOC-00220,T-Siti,11.6
+MNT-00368,WET-01,,2025-11-25 08:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Kumar,5.4
+MNT-00369,CVD-02,,2025-11-27 20:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Siti,4.1
+MNT-00370,ETCH-06,A,2025-11-28 14:30:20,Unscheduled repair,OOC response for endpoint_time. Run the O2 dry clean recipe DC-O2-30 followed by 5 seasoning wafers.,Chamber liner kit (wet clean only),OOC-00221,T-Lim,3.2
+MNT-00371,CMP-02,,2025-11-28 20:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Wong,5.3
+MNT-00372,LITH-03,,2025-11-28 20:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Siti,4.9
+MNT-00373,ETCH-03,,2025-11-30 13:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Lim,4.0
+MNT-00374,ETCH-03,A,2025-12-01 05:42:02,Unscheduled repair,OOC response for he_backside_flow. Replace the He seal o-ring and re-run the leak-up test.,,OOC-00222,T-Lim,7.4
+MNT-00375,ETCH-02,A,2025-12-02 11:39:21,Unscheduled repair,OOC response for etch_rate. Vent the chamber under LOTO and replace the focus ring.,Ring screws kit,OOC-00223,T-Wong,3.8
+MNT-00376,CVD-04,B,2025-12-02 21:32:15,Unscheduled repair,OOC response for particle_adders. Run an extended clean plus a thicker pre-coat (seasoning) to bury loose deposits.,Lift pin set,OOC-00224,T-Kumar,3.2
+MNT-00377,WET-02,,2025-12-03 20:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Siti,4.1
+MNT-00378,ETCH-02,,2025-12-04 08:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Raj,4.1
+MNT-00379,ETCH-06,,2025-12-04 09:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Ahmad,3.8
+MNT-00380,ETCH-05,A,2025-12-04 12:55:18,Unscheduled repair,OOC response for etch_rate. Run the O2 dry clean recipe DC-O2-30 followed by 5 seasoning wafers.,Chamber liner kit (wet clean only); Viewport window (wet clean only),OOC-00226,T-Siti,6.5
+MNT-00381,LITH-02,,2025-12-05 20:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Chen,3.2
+MNT-00382,CVD-01,,2025-12-06 20:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Ahmad,3.8
+MNT-00383,CVD-01,A,2025-12-07 00:03:26,Unscheduled repair,"OOC response for film_stress. If heater zone power is unstable or a zone has failed, replace the heater (pedestal) assembly.",Thermocouple; Pedestal heater assembly,OOC-00227,T-Ahmad,3.0
+MNT-00384,CMP-03,P1,2025-12-07 12:21:30,Unscheduled repair,OOC response for removal_rate. Replace the conditioner disk if at or near its life limit.,Polishing pad,OOC-00228,T-Chen,1.8
+MNT-00385,ETCH-05,,2025-12-08 09:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Nora,5.9
+MNT-00386,LITH-01,,2025-12-09 14:32:08,Unscheduled repair,OOC response for overlay_x. Update the overlay correction (APC) parameters after calibration.,,OOC-00230,T-Ahmad,2.4
+MNT-00387,WET-01,B1,2025-12-09 17:27:47,Unscheduled repair,"OOC response for watermark_defects. If DI resistivity is low, raise a facilities request.",IPA nozzle,OOC-00231,T-Kumar,1.6
+MNT-00388,CVD-04,A,2025-12-10 00:23:15,Unscheduled repair,"OOC response for thickness_uniformity. Run 2 thickness monitor wafers. If uniformity has not recovered, perform a showerhead swap PM.",Showerhead (faceplate),OOC-00232,T-Siti,6.3
+MNT-00389,CMP-04,P1,2025-12-12 11:27:34,Unscheduled repair,OOC response for wiwnu. Rebuild the carrier head: replace the membrane and retaining ring.,Carrier membrane,OOC-00233,T-Ahmad,5.8
+MNT-00390,ETCH-03,C,2025-12-12 12:37:24,Unscheduled repair,OOC response for endpoint_time. Run the O2 dry clean recipe DC-O2-30 followed by 5 seasoning wafers.,Chamber liner kit (wet clean only),OOC-00234,T-Chen,2.3
+MNT-00391,CMP-01,,2025-12-12 13:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Kumar,4.9
+MNT-00392,WET-03,,2025-12-12 20:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Wong,3.6
+MNT-00393,LITH-01,,2025-12-13 09:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Chen,5.7
+MNT-00394,CMP-04,,2025-12-13 20:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Raj,5.0
+MNT-00395,CVD-03,,2025-12-15 09:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Ahmad,4.8
+MNT-00396,ETCH-03,B,2025-12-16 12:05:52,Unscheduled repair,OOC response for particle_adders. Run the O2 dry clean recipe DC-O2-30 followed by 5 seasoning wafers.,Chamber liner kit (wet clean only),OOC-00235,T-Wong,2.5
+MNT-00397,CVD-04,,2025-12-17 08:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Nora,3.3
+MNT-00398,LITH-03,,2025-12-17 19:26:00,Unscheduled repair,OOC response for resist_thickness. Hold the tool until requalification passes.,,OOC-00236,T-Siti,2.7
+MNT-00399,LITH-02,,2025-12-19 22:00:51,Unscheduled repair,OOC response for focus_error. Clean the wafer chuck with the approved chuck cleaning stone and wipe procedure.,,OOC-00237,T-Lim,2.8
+MNT-00400,ETCH-04,C,2025-12-22 03:10:43,Unscheduled repair,"OOC response for etch_rate. Run 3 monitor wafers. If etch rate is back within +/-3% of baseline, release the chamber.",Viewport window (wet clean only),OOC-00238,T-Raj,6.0
+MNT-00401,WET-01,,2025-12-22 09:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Nora,3.3
+MNT-00402,ETCH-04,,2025-12-23 08:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Nora,5.7
+MNT-00403,CMP-03,,2025-12-23 20:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Chen,3.1
+MNT-00404,ETCH-01,,2025-12-24 20:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Ahmad,4.3
+MNT-00405,CVD-03,A,2025-12-24 23:37:41,Unscheduled repair,OOC response for particle_adders. Run an extended clean plus a thicker pre-coat (seasoning) to bury loose deposits.,Lift pin set,OOC-00239,T-Nora,2.5
+MNT-00406,LITH-03,,2025-12-25 09:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Siti,3.4
+MNT-00407,CMP-02,,2025-12-25 20:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Raj,4.0
+MNT-00408,LITH-02,,2025-12-26 20:41:06,Unscheduled repair,OOC response for cd_mean. Clean the dispense nozzle and run a dummy dispense.,,OOC-00242,T-Chen,1.0
+MNT-00409,ETCH-03,C,2025-12-26 21:00:15,Unscheduled repair,"OOC response for cd_uniformity. Revert the recipe to the last qualified version, or complete the missed requalification.",,OOC-00243,T-Raj,0.8
+MNT-00410,CVD-02,,2025-12-30 20:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Siti,4.7
+MNT-00411,ETCH-05,A,2025-12-30 23:19:40,Unscheduled repair,"OOC response for reflected_power. Revert the recipe to the last qualified version, or complete the missed requalification.",,OOC-00245,T-Lim,3.9
+MNT-00412,ETCH-06,,2025-12-31 20:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Chen,3.4
+MNT-00413,WET-02,,2026-01-01 13:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Kumar,5.5
+MNT-00414,ETCH-03,,2026-01-02 13:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Lim,6.0
+MNT-00415,WET-03,B1,2026-01-03 13:36:53,Unscheduled repair,OOC response for particle_adders. Replace the recirculation filter and flush the loop.,,OOC-00250,T-Siti,3.8
+MNT-00416,CVD-01,,2026-01-03 20:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Nora,3.9
+MNT-00417,LITH-02,,2026-01-04 13:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Lim,5.1
+MNT-00418,LITH-02,,2026-01-04 17:39:34,Unscheduled repair,OOC response for cd_mean. Clean the dispense nozzle and run a dummy dispense.,,OOC-00251,T-Wong,3.5
+MNT-00419,ETCH-02,,2026-01-05 08:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Lim,5.9
+MNT-00420,WET-01,B2,2026-01-07 07:40:36,Unscheduled repair,OOC response for oxide_etch_rate. Change the bath.,,OOC-00252,T-Kumar,1.2
+MNT-00421,CMP-01,,2026-01-08 09:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Kumar,3.9
+MNT-00422,ETCH-05,,2026-01-09 08:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Kumar,5.1
+MNT-00423,CMP-01,P1,2026-01-09 22:52:38,Unscheduled repair,OOC response for removal_rate. Verify slurry flow with the flow-check routine.,POU slurry filter,OOC-00253,T-Nora,3.6
+MNT-00424,CMP-04,,2026-01-11 08:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Chen,3.6
+MNT-00425,WET-03,,2026-01-11 09:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Nora,4.1
+MNT-00426,LITH-01,,2026-01-11 13:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Kumar,4.9
+MNT-00427,CVD-03,,2026-01-13 08:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Kumar,5.7
+MNT-00428,CVD-04,,2026-01-13 09:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Lim,3.6
+MNT-00429,CMP-01,P2,2026-01-14 20:56:07,Unscheduled repair,OOC response for scratch_count. Verify slurry flow with the flow-check routine.,POU slurry filter,OOC-00254,T-Chen,3.9
+MNT-00430,CVD-04,B,2026-01-15 18:10:15,Unscheduled repair,OOC response for film_thickness. Replace the ampoule if the level is below 15%.,Precursor ampoule,OOC-00255,T-Siti,1.6
+MNT-00431,LITH-01,,2026-01-17 02:59:39,Unscheduled repair,"OOC response for cd_mean. If laser energy is unstable, raise a laser service request.",,OOC-00257,T-Raj,2.1
+MNT-00432,WET-01,,2026-01-18 20:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Wong,3.3
+MNT-00433,CMP-03,,2026-01-21 08:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Lim,5.6
+MNT-00434,LITH-03,,2026-01-21 13:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Kumar,5.2
+MNT-00435,ETCH-04,,2026-01-22 13:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Lim,5.6
+MNT-00436,ETCH-03,B,2026-01-22 13:30:30,Unscheduled repair,OOC response for cd_uniformity. Clean the ESC surface with an approved lint-free wipe and IPA. Do not use abrasives.,ESC assembly (vendor replacement only); He seal o-ring,OOC-00259,T-Chen,3.5
+MNT-00437,CMP-02,,2026-01-22 20:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Kumar,5.7
+MNT-00438,ETCH-01,,2026-01-23 08:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Kumar,4.4
+MNT-00439,WET-01,B2,2026-01-23 12:21:14,Unscheduled repair,OOC response for oxide_etch_rate. Change the bath.,,OOC-00260,T-Nora,1.1
+MNT-00440,CMP-01,P2,2026-01-24 14:26:31,Unscheduled repair,OOC response for wiwnu. Run head calibration (zone pressure) after rebuild.,Retaining ring,OOC-00261,T-Kumar,4.0
+MNT-00441,ETCH-01,B,2026-01-26 11:09:35,Unscheduled repair,OOC response for cd_uniformity. Clean the ESC surface with an approved lint-free wipe and IPA. Do not use abrasives.,He seal o-ring; ESC assembly (vendor replacement only),OOC-00262,T-Lim,8.2
+MNT-00442,CMP-04,P2,2026-01-26 19:14:31,Unscheduled repair,OOC response for removal_rate. Rebuild the carrier head: replace the membrane and retaining ring.,Carrier membrane,OOC-00263,T-Kumar,3.0
+MNT-00443,LITH-01,,2026-01-28 19:38:23,Unscheduled repair,OOC response for overlay_y. Update the overlay correction (APC) parameters after calibration.,,OOC-00264,T-Kumar,5.4
+MNT-00444,ETCH-02,A,2026-01-29 02:59:53,Unscheduled repair,"OOC response for etch_rate. If an MFC deviates more than 2% on ROR, recalibrate it; if it deviates more than 5%, replace it.",Mass flow controller (C4F8 / CF4 / O2 / Ar),OOC-00265,T-Lim,6.1
+MNT-00445,ETCH-03,,2026-01-29 08:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Kumar,5.8
+MNT-00446,CVD-04,B,2026-01-29 12:10:20,Unscheduled repair,"OOC response for thickness_uniformity. Run 2 thickness monitor wafers. If uniformity has not recovered, perform a showerhead swap PM.",,OOC-00266,T-Chen,7.9
+MNT-00447,ETCH-04,A,2026-01-30 02:39:34,Unscheduled repair,"OOC response for etch_rate. Run 3 monitor wafers. If etch rate is back within +/-3% of baseline, release the chamber.",,OOC-00267,T-Nora,2.3
+MNT-00448,WET-02,,2026-01-30 20:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Siti,4.3
+MNT-00449,CVD-02,,2026-01-31 09:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Lim,4.8
+MNT-00450,ETCH-06,,2026-02-01 13:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Lim,3.2
+MNT-00451,ETCH-02,,2026-02-02 20:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Lim,5.5
+MNT-00452,LITH-02,,2026-02-04 08:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Nora,4.4
+MNT-00453,CVD-01,,2026-02-04 09:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Kumar,4.4
+MNT-00454,WET-01,B2,2026-02-05 09:21:20,Unscheduled repair,OOC response for particle_adders. Replace the pump seal if worn.,,OOC-00269,T-Raj,3.7
+MNT-00455,CMP-01,,2026-02-07 09:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Ahmad,4.3
+MNT-00456,WET-03,,2026-02-08 13:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Siti,4.8
+MNT-00457,LITH-03,,2026-02-08 14:56:16,Unscheduled repair,OOC response for cd_mean. Run dose calibration.,,OOC-00270,T-Siti,2.7
+MNT-00458,ETCH-05,,2026-02-10 09:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Nora,5.5
+MNT-00459,WET-03,B1,2026-02-10 15:40:36,Unscheduled repair,OOC response for watermark_defects. Restore IPA and N2 flow to setpoint (clean or replace the IPA nozzle).,IPA nozzle,OOC-00274,T-Chen,2.5
+MNT-00460,CMP-03,P1,2026-02-12 01:38:48,Unscheduled repair,OOC response for wiwnu. Run head calibration (zone pressure) after rebuild.,,OOC-00275,T-Ahmad,4.6
+MNT-00461,LITH-01,,2026-02-12 13:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Chen,3.7
+MNT-00462,CVD-03,,2026-02-13 08:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Siti,3.1
+MNT-00463,CVD-04,,2026-02-13 08:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Raj,5.4
+MNT-00464,CMP-04,,2026-02-13 20:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Raj,3.8
+MNT-00465,LITH-02,,2026-02-15 06:41:48,Unscheduled repair,OOC response for cd_mean. Recalibrate the hotplate if uniformity is out.,Dispense nozzle,OOC-00276,T-Kumar,2.1
+MNT-00466,ETCH-03,C,2026-02-15 12:50:49,Unscheduled repair,"OOC response for particle_adders. Run 3 monitor wafers. If etch rate is back within +/-3% of baseline, release the chamber.",Chamber liner kit (wet clean only); Viewport window (wet clean only),OOC-00277,T-Nora,2.9
+MNT-00467,ETCH-05,C,2026-02-16 03:35:07,Unscheduled repair,"OOC response for reflected_power. Under LOTO, reseat and torque RF connectors to specification. Replace any discoloured connector.",RF match unit,OOC-00278,T-Ahmad,5.6
+MNT-00468,WET-01,,2026-02-18 09:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Nora,3.9
+MNT-00469,LITH-02,,2026-02-18 19:13:00,Unscheduled repair,OOC response for focus_error. Clean the wafer chuck with the approved chuck cleaning stone and wipe procedure.,Chuck cleaning stone,OOC-00282,T-Lim,2.0
+MNT-00470,WET-02,B2,2026-02-19 04:26:00,Unscheduled repair,OOC response for watermark_defects. Restore IPA and N2 flow to setpoint (clean or replace the IPA nozzle).,,OOC-00284,T-Siti,2.9
+MNT-00471,ETCH-04,,2026-02-20 08:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Kumar,5.4
+MNT-00472,CMP-03,,2026-02-20 13:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Ahmad,5.7
+MNT-00473,ETCH-01,A,2026-02-20 20:06:25,Unscheduled repair,OOC response for he_backside_flow. Replace the He seal o-ring and re-run the leak-up test.,He seal o-ring,OOC-00285,T-Kumar,4.9
+MNT-00474,ETCH-04,C,2026-02-22 07:29:28,Unscheduled repair,OOC response for endpoint_time. Purge the gas line after any MFC replacement.,Mass flow controller (C4F8 / CF4 / O2 / Ar),OOC-00288,T-Lim,4.1
+MNT-00475,LITH-03,,2026-02-22 20:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Nora,4.9
+MNT-00476,CMP-02,,2026-02-24 20:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Chen,4.6
+MNT-00477,ETCH-01,,2026-02-25 09:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Chen,3.2
+MNT-00478,WET-02,B1,2026-02-25 11:38:23,Unscheduled repair,OOC response for watermark_defects. Restore IPA and N2 flow to setpoint (clean or replace the IPA nozzle).,,OOC-00293,T-Nora,3.7
+MNT-00479,CVD-02,,2026-02-27 09:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Siti,3.5
+MNT-00480,ETCH-04,A,2026-02-28 01:43:28,Unscheduled repair,OOC response for he_backside_flow. Replace the He seal o-ring and re-run the leak-up test.,He seal o-ring; ESC assembly (vendor replacement only),OOC-00296,T-Siti,8.7
+MNT-00481,ETCH-03,,2026-02-28 20:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Chen,3.9
+MNT-00482,WET-02,,2026-03-01 20:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Ahmad,5.3
+MNT-00483,CMP-04,P2,2026-03-02 14:48:26,Unscheduled repair,OOC response for scratch_count. Replace the POU filter and flush the slurry line.,POU slurry filter,OOC-00297,T-Nora,3.4
+MNT-00484,WET-01,B2,2026-03-03 02:44:06,Unscheduled repair,OOC response for particle_adders. Replace the pump seal if worn.,Pump seal kit; Recirculation filter,OOC-00298,T-Lim,1.2
+MNT-00485,ETCH-06,,2026-03-04 20:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Ahmad,3.0
+MNT-00486,ETCH-02,,2026-03-05 08:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Nora,5.0
+MNT-00487,CVD-01,,2026-03-06 08:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Lim,4.3
+MNT-00488,WET-03,,2026-03-07 09:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Lim,4.9
+MNT-00489,ETCH-04,B,2026-03-07 16:57:54,Unscheduled repair,OOC response for cd_uniformity. Clean the ESC surface with an approved lint-free wipe and IPA. Do not use abrasives.,ESC assembly (vendor replacement only),OOC-00301,T-Lim,9.5
+MNT-00490,LITH-01,,2026-03-07 18:15:17,Unscheduled repair,OOC response for focus_error. Clean the wafer chuck with the approved chuck cleaning stone and wipe procedure.,Chuck cleaning stone,OOC-00302,T-Chen,1.5
+MNT-00491,ETCH-04,A,2026-03-08 01:47:49,Unscheduled repair,OOC response for endpoint_time. Run the O2 dry clean recipe DC-O2-30 followed by 5 seasoning wafers.,Chamber liner kit (wet clean only),OOC-00303,T-Nora,7.3
+MNT-00492,LITH-02,,2026-03-08 08:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Siti,5.4
+MNT-00493,CVD-03,B,2026-03-09 19:03:22,Unscheduled repair,"OOC response for film_stress. If heater zone power is unstable or a zone has failed, replace the heater (pedestal) assembly.",,OOC-00304,T-Raj,5.1
+MNT-00494,CMP-01,,2026-03-10 20:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Chen,5.2
+MNT-00495,CVD-04,,2026-03-13 13:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Nora,3.2
+MNT-00496,WET-02,B2,2026-03-13 19:29:21,Unscheduled repair,OOC response for oxide_etch_rate. Run 1 etch rate monitor after the bath stabilises (30 minutes).,,OOC-00305,T-Kumar,1.9
+MNT-00497,CVD-04,B,2026-03-14 16:25:22,Unscheduled repair,"OOC response for refractive_index. If heater zone power is unstable or a zone has failed, replace the heater (pedestal) assembly.",Thermocouple,OOC-00307,T-Chen,9.4
+MNT-00498,CVD-03,,2026-03-14 20:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Chen,3.1
+MNT-00499,LITH-01,,2026-03-14 20:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Nora,3.9
+MNT-00500,ETCH-02,B,2026-03-14 22:06:21,Unscheduled repair,"OOC response for etch_rate. If an MFC deviates more than 2% on ROR, recalibrate it; if it deviates more than 5%, replace it.",Mass flow controller (C4F8 / CF4 / O2 / Ar),OOC-00308,T-Chen,3.6
+MNT-00501,CMP-04,,2026-03-15 13:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Lim,3.7
+MNT-00502,ETCH-05,,2026-03-15 20:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Chen,5.1
+MNT-00503,CVD-02,A,2026-03-15 23:27:38,Unscheduled repair,OOC response for particle_adders. Run an extended clean plus a thicker pre-coat (seasoning) to bury loose deposits.,Lift pin set,OOC-00309,T-Siti,3.7
+MNT-00504,WET-01,,2026-03-17 20:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Lim,5.2
+MNT-00505,CMP-01,P2,2026-03-20 12:10:03,Unscheduled repair,OOC response for removal_rate. Replace the conditioner disk if at or near its life limit.,,OOC-00311,T-Wong,2.2
+MNT-00506,WET-03,B1,2026-03-21 06:24:09,Unscheduled repair,"OOC response for watermark_defects. If DI resistivity is low, raise a facilities request.",,OOC-00312,T-Wong,2.6
+MNT-00507,ETCH-01,B,2026-03-21 23:38:36,Unscheduled repair,OOC response for he_backside_flow. Clean the ESC surface with an approved lint-free wipe and IPA. Do not use abrasives.,ESC assembly (vendor replacement only); He seal o-ring,OOC-00313,T-Wong,18.0
+MNT-00508,LITH-03,,2026-03-22 13:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Raj,4.8
+MNT-00509,ETCH-04,,2026-03-24 09:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Lim,4.0
+MNT-00510,ETCH-01,,2026-03-24 13:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Kumar,5.9
+MNT-00511,CMP-03,,2026-03-24 13:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Siti,4.3
+MNT-00512,CMP-02,,2026-03-25 20:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Ahmad,3.7
+MNT-00513,LITH-03,,2026-03-30 03:34:50,Unscheduled repair,OOC response for resist_thickness. Recalibrate the hotplate if uniformity is out.,Dispense nozzle,OOC-00315,T-Siti,4.5
+MNT-00514,CVD-02,,2026-03-30 08:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Raj,5.4
+MNT-00515,ETCH-03,,2026-03-30 09:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Raj,5.2
+MNT-00516,LITH-01,,2026-03-30 17:27:32,Unscheduled repair,OOC response for focus_error. Clean the wafer chuck with the approved chuck cleaning stone and wipe procedure.,,OOC-00316,T-Nora,3.3
+MNT-00517,WET-02,,2026-03-31 08:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Chen,4.1
+MNT-00518,CMP-01,P2,2026-04-02 02:31:22,Unscheduled repair,OOC response for removal_rate. Rebuild the carrier head: replace the membrane and retaining ring.,Carrier membrane,OOC-00318,T-Raj,2.5
+MNT-00519,CVD-01,,2026-04-02 20:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Raj,5.3
+MNT-00520,ETCH-02,,2026-04-05 20:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Kumar,3.8
+MNT-00521,LITH-03,,2026-04-05 23:11:35,Unscheduled repair,OOC response for overlay_x. Update the overlay correction (APC) parameters after calibration.,,OOC-00319,T-Chen,4.7
+MNT-00522,ETCH-06,,2026-04-06 09:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Lim,5.2
+MNT-00523,WET-03,,2026-04-06 20:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Nora,5.4
+MNT-00524,CVD-04,B,2026-04-08 04:52:16,Unscheduled repair,OOC response for particle_adders. Run an extended clean plus a thicker pre-coat (seasoning) to bury loose deposits.,,OOC-00320,T-Ahmad,5.4
+MNT-00525,CMP-01,,2026-04-09 09:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Siti,5.2
+MNT-00526,LITH-02,,2026-04-10 08:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Kumar,4.2
+MNT-00527,ETCH-05,,2026-04-11 13:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Siti,4.5
+MNT-00528,CMP-04,,2026-04-11 13:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Wong,3.2
+MNT-00529,CVD-02,B,2026-04-11 21:57:15,Unscheduled repair,"OOC response for particle_adders. Revert the recipe to the last qualified version, or complete the missed requalification.",,OOC-00323,T-Nora,2.8
+MNT-00530,LITH-01,,2026-04-13 09:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Raj,4.2
+MNT-00531,CVD-04,,2026-04-14 09:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Siti,5.5
+MNT-00532,ETCH-03,B,2026-04-15 09:35:28,Unscheduled repair,OOC response for etch_rate. Vent the chamber under LOTO and replace the focus ring.,Focus ring (silicon),OOC-00326,T-Lim,3.5
+MNT-00533,CVD-03,,2026-04-15 13:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Siti,4.9
+MNT-00534,LITH-02,,2026-04-16 04:17:46,Unscheduled repair,OOC response for focus_error. Run a focus monitor wafer to confirm the hot spot is gone.,Chuck cleaning stone,OOC-00328,T-Siti,1.7
+MNT-00535,WET-01,,2026-04-16 09:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Nora,6.0
+MNT-00536,ETCH-06,B,2026-04-17 05:37:34,Unscheduled repair,"OOC response for etch_rate. Pump down, run a leak-up rate check, then run 5 seasoning wafers.",Ring screws kit,OOC-00329,T-Lim,5.1
+MNT-00537,CMP-04,P1,2026-04-18 18:37:15,Unscheduled repair,OOC response for wiwnu. Rebuild the carrier head: replace the membrane and retaining ring.,,OOC-00330,T-Chen,4.2
+MNT-00538,LITH-01,,2026-04-21 17:23:49,Unscheduled repair,OOC response for cd_mean. Clean the dispense nozzle and run a dummy dispense.,Dispense nozzle,OOC-00331,T-Wong,3.2
+MNT-00539,WET-01,B2,2026-04-22 01:42:03,Unscheduled repair,OOC response for watermark_defects. Restore IPA and N2 flow to setpoint (clean or replace the IPA nozzle).,IPA nozzle,OOC-00332,T-Wong,4.4
+MNT-00540,CVD-01,A,2026-04-22 12:21:04,Unscheduled repair,OOC response for film_thickness. Replace the ampoule if the level is below 15%.,Line heater jacket,OOC-00333,T-Siti,1.0
+MNT-00541,LITH-03,,2026-04-22 13:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Kumar,4.1
+MNT-00542,ETCH-05,A,2026-04-22 15:18:04,Unscheduled repair,OOC response for endpoint_time. Hold the tool until requalification passes.,,OOC-00334,T-Chen,3.1
+MNT-00543,ETCH-01,,2026-04-23 09:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Siti,5.3
+MNT-00544,ETCH-04,,2026-04-24 13:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Siti,4.4
+MNT-00545,CMP-02,,2026-04-25 09:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Wong,4.1
+MNT-00546,CMP-03,,2026-04-25 13:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Ahmad,4.6
+MNT-00547,CMP-01,P2,2026-04-28 15:22:41,Unscheduled repair,"OOC response for dishing. Revert the recipe to the last qualified version, or complete the missed requalification.",,OOC-00336,T-Kumar,3.7
+MNT-00548,ETCH-01,C,2026-04-28 22:08:23,Unscheduled repair,OOC response for cd_uniformity. Clean the ESC surface with an approved lint-free wipe and IPA. Do not use abrasives.,ESC assembly (vendor replacement only),OOC-00337,T-Ahmad,5.8
+MNT-00549,CMP-02,P1,2026-04-29 04:15:03,Unscheduled repair,"OOC response for removal_rate. Revert the recipe to the last qualified version, or complete the missed requalification.",,OOC-00338,T-Siti,1.6
+MNT-00550,CVD-03,A,2026-04-29 11:22:25,Unscheduled repair,"OOC response for thickness_uniformity. Run 2 thickness monitor wafers. If uniformity has not recovered, perform a showerhead swap PM.",Showerhead o-ring kit; Showerhead (faceplate),OOC-00339,T-Ahmad,1.7
+MNT-00551,CVD-02,A,2026-04-29 19:47:45,Unscheduled repair,"OOC response for film_stress. If the thermocouple reads more than 3 C off the reference, recalibrate or replace the thermocouple.",,OOC-00340,T-Nora,10.9
+MNT-00552,ETCH-03,,2026-04-30 08:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Raj,5.7
+MNT-00553,CVD-01,,2026-04-30 08:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Raj,3.6
+MNT-00554,CVD-02,,2026-04-30 20:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Kumar,4.7
+MNT-00555,ETCH-03,B,2026-05-01 06:29:35,Unscheduled repair,OOC response for particle_adders. Run the O2 dry clean recipe DC-O2-30 followed by 5 seasoning wafers.,,OOC-00341,T-Siti,6.4
+MNT-00556,ETCH-06,A,2026-05-02 08:36:04,Unscheduled repair,"OOC response for endpoint_time. Run 3 monitor wafers. If etch rate is back within +/-3% of baseline, release the chamber.",Chamber liner kit (wet clean only),OOC-00345,T-Raj,3.6
+MNT-00557,WET-02,,2026-05-03 09:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Nora,5.3
+MNT-00558,CVD-01,B,2026-05-04 14:04:41,Unscheduled repair,"OOC response for particle_adders. Run 2 particle monitors. If adders are still high, perform a chamber wet clean.",,OOC-00347,T-Wong,3.1
+MNT-00559,CVD-01,A,2026-05-06 09:18:14,Unscheduled repair,OOC response for particle_adders. Run an extended clean plus a thicker pre-coat (seasoning) to bury loose deposits.,Lift pin set; Chamber lid liner,OOC-00349,T-Siti,11.0
+MNT-00560,CVD-02,B,2026-05-06 10:35:16,Unscheduled repair,OOC response for thickness_uniformity. Run an extended in-situ NF3 clean (2x standard time) and a pre-coat.,Showerhead o-ring kit; Showerhead (faceplate),OOC-00350,T-Siti,2.1
+MNT-00561,CMP-04,P2,2026-05-06 11:40:15,Unscheduled repair,OOC response for dishing. Recalibrate the endpoint system with the calibration wafer.,Endpoint light source,OOC-00351,T-Nora,2.8
+MNT-00562,CVD-02,B,2026-05-06 18:33:57,Unscheduled repair,OOC response for film_thickness. Replace the ampoule if the level is below 15%.,,OOC-00352,T-Nora,3.0
+MNT-00563,ETCH-03,B,2026-05-07 13:10:00,Unscheduled repair,OOC response for cd_uniformity. Replace the He seal o-ring and re-run the leak-up test.,ESC assembly (vendor replacement only),OOC-00353,T-Chen,7.0
+MNT-00564,ETCH-02,,2026-05-08 13:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Wong,4.0
+MNT-00565,WET-03,,2026-05-09 08:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Kumar,3.0
+MNT-00566,ETCH-06,,2026-05-09 20:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Wong,5.5
+MNT-00567,CMP-03,P2,2026-05-10 08:23:22,Unscheduled repair,"OOC response for removal_rate. If the pad is near its life limit, replace the pad and run the pad break-in recipe.",,OOC-00355,T-Lim,2.3
+MNT-00568,ETCH-01,A,2026-05-10 11:19:46,Unscheduled repair,OOC response for etch_rate. Vent the chamber under LOTO and replace the focus ring.,Ring screws kit,OOC-00356,T-Siti,3.5
+MNT-00569,CMP-01,,2026-05-10 13:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Nora,5.0
+MNT-00570,LITH-01,,2026-05-10 13:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Nora,5.0
+MNT-00571,CMP-04,,2026-05-10 20:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Chen,4.9
+MNT-00572,LITH-02,,2026-05-11 20:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Chen,5.4
+MNT-00573,CMP-02,P2,2026-05-13 04:22:27,Unscheduled repair,OOC response for removal_rate. Run head calibration (zone pressure) after rebuild.,,OOC-00358,T-Nora,4.6
+MNT-00574,CVD-01,A,2026-05-14 06:24:32,Unscheduled repair,"OOC response for film_thickness. If heater zone power is unstable or a zone has failed, replace the heater (pedestal) assembly.",,OOC-00360,T-Lim,5.3
+MNT-00575,ETCH-05,,2026-05-14 20:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Ahmad,4.7
+MNT-00576,WET-01,,2026-05-15 20:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Siti,4.5
+MNT-00577,CVD-03,,2026-05-16 08:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Nora,6.0
+MNT-00578,CVD-04,,2026-05-16 09:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Raj,3.9
+MNT-00579,WET-02,B2,2026-05-16 19:35:34,Unscheduled repair,OOC response for watermark_defects. Restore IPA and N2 flow to setpoint (clean or replace the IPA nozzle).,IPA nozzle,OOC-00361,T-Ahmad,3.1
+MNT-00580,ETCH-05,B,2026-05-17 02:54:08,Unscheduled repair,OOC response for cd_uniformity. Clean the ESC surface with an approved lint-free wipe and IPA. Do not use abrasives.,He seal o-ring; ESC assembly (vendor replacement only),OOC-00362,T-Siti,8.7
+MNT-00581,CMP-03,P2,2026-05-18 02:25:06,Unscheduled repair,OOC response for removal_rate. Replace the conditioner disk if at or near its life limit.,Conditioner disk; Polishing pad,OOC-00363,T-Ahmad,2.4
+MNT-00582,LITH-01,,2026-05-20 10:52:43,Unscheduled repair,OOC response for cd_mean. Run dose calibration.,,OOC-00365,T-Lim,4.0
+MNT-00583,LITH-03,,2026-05-22 09:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Nora,3.5
+MNT-00584,ETCH-01,,2026-05-22 13:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Nora,3.4
+MNT-00585,CMP-03,,2026-05-23 13:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Kumar,4.3
+MNT-00586,CMP-02,,2026-05-24 08:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Chen,5.7
+MNT-00587,ETCH-04,,2026-05-26 08:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Kumar,5.7
+MNT-00588,ETCH-05,A,2026-05-29 00:58:00,Unscheduled repair,OOC response for reflected_power. Run the match auto-tune calibration routine.,,OOC-00368,T-Chen,1.8
+MNT-00589,ETCH-05,B,2026-05-30 06:57:29,Unscheduled repair,OOC response for etch_rate. Run the match auto-tune calibration routine.,RF match unit,OOC-00369,T-Lim,3.5
+MNT-00590,WET-02,,2026-05-30 09:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Wong,5.0
+MNT-00591,ETCH-03,,2026-05-31 13:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Nora,4.1
+MNT-00592,CVD-01,,2026-06-02 08:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Ahmad,5.7
+MNT-00593,CVD-02,,2026-06-02 13:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Nora,3.6
+MNT-00594,ETCH-05,C,2026-06-02 18:34:19,Unscheduled repair,OOC response for particle_adders. Run the O2 dry clean recipe DC-O2-30 followed by 5 seasoning wafers.,Chamber liner kit (wet clean only),OOC-00371,T-Wong,3.8
+MNT-00595,CMP-01,P2,2026-06-03 07:18:04,Unscheduled repair,"OOC response for dishing. Revert the recipe to the last qualified version, or complete the missed requalification.",,OOC-00372,T-Nora,2.2
+MNT-00596,ETCH-05,A,2026-06-04 07:48:49,Unscheduled repair,"OOC response for etch_rate. Pump down, run a leak-up rate check, then run 5 seasoning wafers.",,OOC-00375,T-Chen,5.2
+MNT-00597,ETCH-05,A,2026-06-06 08:24:19,Unscheduled repair,OOC response for he_backside_flow. Hold the tool until requalification passes.,,OOC-00376,T-Lim,1.2
+MNT-00598,ETCH-02,A,2026-06-06 13:37:28,Unscheduled repair,OOC response for cd_uniformity. Replace the He seal o-ring and re-run the leak-up test.,,OOC-00377,T-Ahmad,13.3
+MNT-00599,LITH-02,,2026-06-07 09:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Siti,5.3
+MNT-00600,CMP-01,,2026-06-08 08:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Wong,5.3
+MNT-00601,WET-03,,2026-06-08 08:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Kumar,5.4
+MNT-00602,CMP-04,,2026-06-08 20:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Nora,5.8
+MNT-00603,ETCH-02,,2026-06-10 13:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Wong,4.4
+MNT-00604,ETCH-03,B,2026-06-11 04:15:11,Unscheduled repair,OOC response for cd_uniformity. Clean the ESC surface with an approved lint-free wipe and IPA. Do not use abrasives.,ESC assembly (vendor replacement only); He seal o-ring,OOC-00380,T-Raj,16.9
+MNT-00605,LITH-01,,2026-06-11 08:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Chen,4.7
+MNT-00606,ETCH-06,,2026-06-11 13:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Kumar,4.3
+MNT-00607,CVD-02,A,2026-06-12 07:33:30,Unscheduled repair,OOC response for particle_adders. Run an extended clean plus a thicker pre-coat (seasoning) to bury loose deposits.,Chamber lid liner; Lift pin set,OOC-00382,T-Kumar,6.6
+MNT-00608,ETCH-05,,2026-06-12 13:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Kumar,4.2
+MNT-00609,WET-01,,2026-06-12 13:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Nora,4.5
+MNT-00610,CVD-04,B,2026-06-13 05:51:23,Unscheduled repair,OOC response for film_thickness. Repair or replace any line heater below setpoint; cold spots cause condensation.,Line heater jacket,OOC-00383,T-Chen,3.7
+MNT-00611,CVD-03,A,2026-06-14 12:38:55,Unscheduled repair,"OOC response for film_thickness. If the thermocouple reads more than 3 C off the reference, recalibrate or replace the thermocouple.",Pedestal heater assembly,OOC-00385,T-Kumar,8.6
+MNT-00612,ETCH-01,C,2026-06-14 15:35:44,Unscheduled repair,"OOC response for etch_rate. If an MFC deviates more than 2% on ROR, recalibrate it; if it deviates more than 5%, replace it.",Mass flow controller (C4F8 / CF4 / O2 / Ar),OOC-00386,T-Ahmad,3.0
+MNT-00613,CVD-04,,2026-06-15 13:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Raj,3.8
+MNT-00614,CVD-03,,2026-06-17 20:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Nora,3.5
+MNT-00615,ETCH-01,C,2026-06-17 20:43:04,Unscheduled repair,OOC response for reflected_power. Run the match auto-tune calibration routine.,,OOC-00387,T-Nora,5.4
+MNT-00616,LITH-02,,2026-06-19 01:05:18,Unscheduled repair,OOC response for focus_error. Clean the wafer chuck with the approved chuck cleaning stone and wipe procedure.,Chuck cleaning stone,OOC-00389,T-Chen,1.1
+MNT-00617,LITH-03,,2026-06-21 08:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Lim,4.0
+MNT-00618,ETCH-02,A,2026-06-21 22:27:29,Unscheduled repair,OOC response for cd_uniformity. Replace the He seal o-ring and re-run the leak-up test.,,OOC-00390,T-Lim,3.3
+MNT-00619,WET-02,B1,2026-06-22 05:43:48,Unscheduled repair,OOC response for oxide_etch_rate. Run 1 etch rate monitor after the bath stabilises (30 minutes).,,OOC-00391,T-Ahmad,2.0
+MNT-00620,CMP-03,,2026-06-22 13:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Siti,4.9
+MNT-00621,ETCH-04,,2026-06-22 20:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Lim,5.8
+MNT-00622,LITH-01,,2026-06-22 20:00:10,Unscheduled repair,OOC response for focus_error. Clean the wafer chuck with the approved chuck cleaning stone and wipe procedure.,Chuck cleaning stone,OOC-00392,T-Wong,2.0
+MNT-00623,ETCH-01,,2026-06-23 09:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Raj,5.6
+MNT-00624,CVD-04,A,2026-06-23 18:26:14,Unscheduled repair,OOC response for particle_adders. Run an extended clean plus a thicker pre-coat (seasoning) to bury loose deposits.,Chamber lid liner,OOC-00393,T-Raj,6.6
+MNT-00625,ETCH-02,C,2026-06-24 11:04:48,Unscheduled repair,"OOC response for endpoint_time. Revert the recipe to the last qualified version, or complete the missed requalification.",,OOC-00394,T-Ahmad,2.6
+MNT-00626,CMP-02,,2026-06-25 09:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Raj,4.5
+MNT-00627,WET-02,,2026-06-28 13:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Kumar,3.1
+MNT-00628,CVD-04,B,2026-06-28 19:48:10,Unscheduled repair,"OOC response for film_stress. Revert the recipe to the last qualified version, or complete the missed requalification.",,OOC-00396,T-Raj,4.3
+MNT-00629,CVD-02,,2026-06-29 09:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Wong,3.3
+MNT-00630,ETCH-03,,2026-06-30 09:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Siti,5.8
+MNT-00631,CVD-04,B,2026-06-30 17:26:16,Unscheduled repair,"OOC response for film_thickness. Run 2 thickness monitor wafers. If uniformity has not recovered, perform a showerhead swap PM.",,OOC-00398,T-Raj,8.8
+MNT-00632,CVD-01,,2026-07-02 09:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Nora,3.4
+MNT-00633,CMP-04,,2026-07-05 13:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Kumar,4.0
+MNT-00634,WET-02,B2,2026-07-06 01:45:42,Unscheduled repair,OOC response for particle_adders. Replace the pump seal if worn.,Recirculation filter; Pump seal kit,OOC-00400,T-Kumar,0.9
+MNT-00635,LITH-02,,2026-07-08 08:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Raj,4.1
+MNT-00636,ETCH-02,C,2026-07-08 11:26:27,Unscheduled repair,"OOC response for etch_rate. Under LOTO, reseat and torque RF connectors to specification. Replace any discoloured connector.",RF connector (N-type); RF match unit,OOC-00404,T-Siti,4.1
+MNT-00637,WET-03,,2026-07-08 13:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Kumar,4.9
+MNT-00638,CMP-01,,2026-07-09 08:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Chen,4.3
+MNT-00639,LITH-01,,2026-07-11 11:02:11,Unscheduled repair,OOC response for overlay_x. Update the overlay correction (APC) parameters after calibration.,,OOC-00405,T-Ahmad,1.6
+MNT-00640,LITH-01,,2026-07-11 20:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Chen,3.6
+MNT-00641,ETCH-02,,2026-07-12 08:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Wong,4.3
+MNT-00642,ETCH-06,,2026-07-13 08:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Siti,3.8
+MNT-00643,WET-01,,2026-07-14 13:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Siti,5.6
+MNT-00644,ETCH-05,,2026-07-15 20:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Chen,4.2
+MNT-00645,CMP-04,P2,2026-07-16 07:59:51,Unscheduled repair,OOC response for removal_rate. Replace the conditioner disk if at or near its life limit.,Conditioner disk,OOC-00408,T-Siti,1.3
+MNT-00646,CVD-04,,2026-07-16 13:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Chen,3.7
+MNT-00647,WET-01,B2,2026-07-18 01:34:50,Unscheduled repair,OOC response for watermark_defects. Restore IPA and N2 flow to setpoint (clean or replace the IPA nozzle).,IPA nozzle,OOC-00409,T-Lim,3.9
+MNT-00648,CVD-03,,2026-07-19 08:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Ahmad,4.1
+MNT-00649,LITH-03,,2026-07-20 09:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Wong,3.5
+MNT-00650,CMP-02,,2026-07-22 09:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Siti,4.3
+MNT-00651,CMP-03,P2,2026-07-22 20:43:33,Unscheduled repair,OOC response for removal_rate. Verify slurry flow with the flow-check routine.,POU slurry filter,OOC-00412,T-Wong,4.2
+MNT-00652,CMP-03,,2026-07-23 08:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Kumar,5.2
+MNT-00653,ETCH-01,,2026-07-25 08:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Wong,3.3
+MNT-00654,ETCH-04,,2026-07-25 13:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Wong,5.5
+MNT-00655,ETCH-03,,2026-07-27 09:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Siti,4.5
+MNT-00656,LITH-01,,2026-07-28 05:22:07,Unscheduled repair,"OOC response for cd_mean. If laser energy is unstable, raise a laser service request.",,OOC-00414,T-Ahmad,0.9
+MNT-00657,WET-02,,2026-07-28 20:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Kumar,4.7
+MNT-00658,CVD-04,B,2026-07-30 01:48:35,Unscheduled repair,"OOC response for particle_adders. Run 2 particle monitors. If adders are still high, perform a chamber wet clean.",,OOC-00415,T-Lim,10.8
+MNT-00659,CVD-02,,2026-08-01 09:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Raj,3.5
+MNT-00660,WET-01,B1,2026-08-01 15:40:00,Unscheduled repair,OOC response for particle_adders. Replace the pump seal if worn.,,OOC-00416,T-Raj,1.0
+MNT-00661,LITH-01,,2026-08-02 19:32:57,Unscheduled repair,OOC response for resist_thickness. Hold the tool until requalification passes.,,OOC-00417,T-Wong,1.0
+MNT-00662,CVD-01,,2026-08-04 20:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Chen,3.0
+MNT-00663,LITH-01,,2026-08-07 09:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Raj,4.8
+MNT-00664,CMP-01,,2026-08-07 20:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Ahmad,3.5
+MNT-00665,CMP-04,,2026-08-07 20:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Raj,4.4
+MNT-00666,CMP-02,P1,2026-08-08 13:35:54,Unscheduled repair,OOC response for dishing. Clean the pad window; replace the pad if the window is permanently clouded.,Endpoint light source,OOC-00418,T-Ahmad,3.1
+MNT-00667,WET-03,,2026-08-09 08:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Lim,5.9
+MNT-00668,LITH-02,,2026-08-09 13:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Raj,5.7
+MNT-00669,ETCH-06,,2026-08-10 08:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Siti,5.9
+MNT-00670,CMP-01,P1,2026-08-11 03:37:36,Unscheduled repair,"OOC response for removal_rate. If the pad is near its life limit, replace the pad and run the pad break-in recipe.",,OOC-00420,T-Ahmad,1.0
+MNT-00671,CVD-03,A,2026-08-11 11:25:40,Unscheduled repair,"OOC response for film_stress. If the thermocouple reads more than 3 C off the reference, recalibrate or replace the thermocouple.",Pedestal heater assembly; Thermocouple,OOC-00421,T-Nora,3.3
+MNT-00672,ETCH-02,,2026-08-11 13:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Lim,4.1
+MNT-00673,ETCH-05,,2026-08-11 13:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Nora,5.2
+MNT-00674,WET-01,,2026-08-11 13:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Siti,5.0
+MNT-00675,LITH-02,,2026-08-12 08:07:07,Unscheduled repair,OOC response for overlay_y. Update the overlay correction (APC) parameters after calibration.,,OOC-00422,T-Wong,4.0
+MNT-00676,CVD-03,B,2026-08-12 14:06:36,Unscheduled repair,OOC response for film_thickness. Replace the ampoule if the level is below 15%.,,OOC-00424,T-Chen,4.3
+MNT-00677,CVD-04,,2026-08-13 13:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Wong,3.5
+MNT-00678,ETCH-03,A,2026-08-18 12:15:01,Unscheduled repair,OOC response for etch_rate. Run the O2 dry clean recipe DC-O2-30 followed by 5 seasoning wafers.,Chamber liner kit (wet clean only),OOC-00427,T-Ahmad,2.1
+MNT-00679,CVD-03,,2026-08-19 09:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Raj,5.6
+MNT-00680,LITH-03,,2026-08-20 08:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Wong,4.1
+MNT-00681,CMP-02,,2026-08-20 20:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Raj,4.3
+MNT-00682,ETCH-01,,2026-08-21 09:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Nora,4.7
+MNT-00683,CVD-02,B,2026-08-21 14:27:21,Unscheduled repair,OOC response for particle_adders. Run an extended clean plus a thicker pre-coat (seasoning) to bury loose deposits.,Lift pin set,OOC-00428,T-Siti,4.9
+MNT-00684,ETCH-03,,2026-08-23 20:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Siti,4.0
+MNT-00685,CMP-03,,2026-08-23 20:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Wong,3.5
+MNT-00686,WET-03,B2,2026-08-24 19:36:13,Unscheduled repair,OOC response for oxide_etch_rate. Change the bath.,,OOC-00430,T-Lim,1.0
+MNT-00687,ETCH-04,,2026-08-26 08:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Ahmad,3.7
+MNT-00688,WET-02,,2026-08-29 09:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Wong,4.9
+MNT-00689,ETCH-02,C,2026-08-29 14:49:45,Unscheduled repair,OOC response for he_backside_flow. Replace the He seal o-ring and re-run the leak-up test.,He seal o-ring,OOC-00432,T-Siti,13.8
+MNT-00690,CVD-01,,2026-08-31 20:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Siti,5.2
+MNT-00691,CVD-02,,2026-09-03 08:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Kumar,3.2
+MNT-00692,CMP-01,,2026-09-04 13:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Wong,5.9
+MNT-00693,LITH-01,,2026-09-07 08:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Chen,5.8
+MNT-00694,CMP-04,,2026-09-08 20:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Wong,4.6
+MNT-00695,ETCH-05,,2026-09-09 08:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Siti,4.3
+MNT-00696,ETCH-06,,2026-09-10 20:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Chen,3.9
+MNT-00697,CVD-01,A,2026-09-11 02:49:16,Unscheduled repair,"OOC response for film_stress. If heater zone power is unstable or a zone has failed, replace the heater (pedestal) assembly.",Pedestal heater assembly,OOC-00437,T-Lim,7.6
+MNT-00698,ETCH-02,,2026-09-11 08:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Kumar,5.0
+MNT-00699,WET-03,,2026-09-11 08:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Raj,5.4
+MNT-00700,CVD-04,,2026-09-11 13:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Nora,3.8
+MNT-00701,WET-01,,2026-09-11 13:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Nora,3.3
+MNT-00702,LITH-02,,2026-09-11 20:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Wong,3.8
+MNT-00703,LITH-01,,2026-09-14 21:37:26,Unscheduled repair,OOC response for focus_error. Hold the tool until requalification passes.,,OOC-00439,T-Siti,1.1
+MNT-00704,CVD-03,,2026-09-16 08:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Chen,5.5
+MNT-00705,ETCH-01,,2026-09-17 09:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Ahmad,5.9
+MNT-00706,CMP-02,,2026-09-18 13:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Chen,5.0
+MNT-00707,LITH-03,,2026-09-19 08:00:00,Scheduled PM,"Monthly PM: stage and alignment calibration, chuck inspection, dose calibration, track nozzle clean.",,,T-Wong,5.2
+MNT-00708,ETCH-03,,2026-09-21 09:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Raj,3.1
+MNT-00709,LITH-03,,2026-09-23 01:55:19,Unscheduled repair,"OOC response for cd_mean. Revert the recipe to the last qualified version, or complete the missed requalification.",,OOC-00444,T-Lim,3.4
+MNT-00710,CMP-03,,2026-09-23 08:00:00,Scheduled PM,"Monthly PM: conditioner disk check, POU filter change, head life counter review, endpoint cal check.",,,T-Raj,5.2
+MNT-00711,ETCH-05,C,2026-09-25 02:03:26,Unscheduled repair,OOC response for cd_uniformity. Vent the chamber under LOTO and replace the focus ring.,Ring screws kit; Focus ring (silicon),OOC-00446,T-Nora,2.9
+MNT-00712,LITH-01,,2026-09-26 03:00:29,Unscheduled repair,OOC response for focus_error. Clean the wafer chuck with the approved chuck cleaning stone and wipe procedure.,Chuck cleaning stone,OOC-00447,T-Ahmad,1.2
+MNT-00713,ETCH-04,,2026-09-26 20:00:00,Scheduled PM,"Monthly PM: chamber inspection, He leak-up test, RF connector check, MFC verification.",,,T-Wong,5.0
+MNT-00714,WET-01,B1,2026-09-28 06:58:44,Unscheduled repair,"OOC response for watermark_defects. If DI resistivity is low, raise a facilities request.",,OOC-00448,T-Chen,3.0
+MNT-00715,WET-01,B2,2026-09-28 11:24:01,Unscheduled repair,OOC response for oxide_etch_rate. Change the bath.,,OOC-00449,T-Chen,0.9
+MNT-00716,WET-02,,2026-09-28 13:00:00,Scheduled PM,"Monthly PM: recirc filter dP check, pump inspection, dryer IPA/N2 flow check, DI resistivity check.",,,T-Lim,3.2
+MNT-00717,WET-03,B2,2026-09-29 00:01:59,Unscheduled repair,"OOC response for watermark_defects. If DI resistivity is low, raise a facilities request.",IPA nozzle,OOC-00450,T-Siti,1.9
+MNT-00718,CVD-02,,2026-09-30 09:00:00,Scheduled PM,"Monthly PM: showerhead inspection, thermocouple check, ampoule level check, particle monitor.",,,T-Nora,4.3

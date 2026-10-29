@@ -1,0 +1,21 @@
+tool_id,module,module_name,platform,chambers,install_year
+ETCH-01,ETCH,Plasma Etch,Kestrel K9,A|B|C,2022
+ETCH-02,ETCH,Plasma Etch,Kestrel K9,A|B|C,2017
+ETCH-03,ETCH,Plasma Etch,Kestrel K9,A|B|C,2017
+ETCH-04,ETCH,Plasma Etch,Kestrel K9,A|B|C,2022
+ETCH-05,ETCH,Plasma Etch,Kestrel K9,A|B|C,2019
+ETCH-06,ETCH,Plasma Etch,Kestrel K9,A|B|C,2018
+CVD-01,CVD,Chemical Vapour Deposition,Halcyon H4,A|B,2018
+CVD-02,CVD,Chemical Vapour Deposition,Halcyon H4,A|B,2018
+CVD-03,CVD,Chemical Vapour Deposition,Halcyon H4,A|B,2022
+CVD-04,CVD,Chemical Vapour Deposition,Halcyon H4,A|B,2017
+CMP-01,CMP,Chemical Mechanical Planarization,Polaris P3,P1|P2,2022
+CMP-02,CMP,Chemical Mechanical Planarization,Polaris P3,P1|P2,2022
+CMP-03,CMP,Chemical Mechanical Planarization,Polaris P3,P1|P2,2021
+CMP-04,CMP,Chemical Mechanical Planarization,Polaris P3,P1|P2,2017
+LITH-01,LITH,Lithography,Meridian M7,,2021
+LITH-02,LITH,Lithography,Meridian M7,,2020
+LITH-03,LITH,Lithography,Meridian M7,,2017
+WET-01,WET,Wet Clean,Cascade C2,B1|B2,2017
+WET-02,WET,Wet Clean,Cascade C2,B1|B2,2017
+WET-03,WET,Wet Clean,Cascade C2,B1|B2,2018

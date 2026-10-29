@@ -1,0 +1,23 @@
+root_cause_code,module,root_cause_name,sop_id
+RC-ETCH-01,ETCH,Chamber wall polymer build-up (clean interval exceeded),SOP-ETCH-001
+RC-ETCH-02,ETCH,Focus (edge) ring erosion,SOP-ETCH-002
+RC-ETCH-03,ETCH,ESC helium backside leak,SOP-ETCH-003
+RC-ETCH-04,ETCH,RF match network or connector issue,SOP-ETCH-004
+RC-ETCH-05,ETCH,Process gas MFC drift,SOP-ETCH-005
+RC-CVD-01,CVD,Showerhead deposition / clogging,SOP-CVD-001
+RC-CVD-02,CVD,Particle flaking from chamber walls or lid,SOP-CVD-002
+RC-CVD-03,CVD,Heater or thermocouple temperature drift,SOP-CVD-003
+RC-CVD-04,CVD,Precursor delivery problem (ampoule low or line heater),SOP-CVD-004
+RC-CMP-01,CMP,Pad glazing or worn conditioner disk,SOP-CMP-001
+RC-CMP-02,CMP,Slurry delivery problem or agglomeration,SOP-CMP-002
+RC-CMP-03,CMP,Carrier head membrane or retaining ring wear,SOP-CMP-003
+RC-CMP-04,CMP,Optical endpoint sensor drift or clouded pad window,SOP-CMP-004
+RC-LITH-01,LITH,Overlay drift from stage or alignment calibration,SOP-LITH-001
+RC-LITH-02,LITH,Wafer chuck contamination (focus hot spot),SOP-LITH-002
+RC-LITH-03,LITH,Exposure dose drift,SOP-LITH-003
+RC-LITH-04,LITH,Track resist coat problem (nozzle or hotplate),SOP-LITH-004
+RC-WET-01,WET,Bath chemical concentration out of range (aged bath),SOP-WET-001
+RC-WET-02,WET,Recirculation filter or pump shedding particles,SOP-WET-002
+RC-WET-03,WET,Dryer problem causing watermarks,SOP-WET-003
+RC-MET-01,ANY,Metrology false alarm (measurement tool error),SOP-MET-001
+RC-GEN-01,ANY,Unqualified change (recipe edit or PM without requalification),SOP-GEN-002
