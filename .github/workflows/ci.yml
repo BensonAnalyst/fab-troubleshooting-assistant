@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+      - run: pip install -r requirements-dev.txt
+      - run: pytest -q
+      # The committed dataset must be exactly what the generator produces.
+      - name: Check committed data is reproducible
+        run: |
+          PYTHONPATH=src python -m fabrag.generate --out /tmp/regen > /dev/null
+          diff -r data /tmp/regen
