@@ -1,4 +1,8 @@
 # Databricks notebook source
+# /// script
+# [tool.databricks.environment]
+# environment_version = "6"
+# ///
 # MAGIC %md
 # MAGIC # 02 · Gold tables and AI Search indexes
 # MAGIC
@@ -80,9 +84,11 @@ def write_gold(df, name, pk, comment):
             AS SELECT * FROM _{name}
         """)
     else:
+        # Update only rows whose content changed (null-safe comparison of every non-key column).
+        changed = " OR ".join(f"NOT (t.`{c}` <=> s.`{c}`)" for c in df.columns if c != pk)
         spark.sql(f"""
             MERGE INTO {fq(name)} t USING _{name} s ON t.{pk} = s.{pk}
-            WHEN MATCHED AND to_json(struct(t.*)) <> to_json(struct(s.*)) THEN UPDATE SET *
+            WHEN MATCHED AND ({changed}) THEN UPDATE SET *
             WHEN NOT MATCHED THEN INSERT *
             WHEN NOT MATCHED BY SOURCE THEN DELETE
         """)
