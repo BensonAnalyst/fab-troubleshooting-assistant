@@ -2,7 +2,7 @@
 
 **An assistant that answers "this tool just went out of control, what do I check?" by retrieving the right SOP and the past OOC cases that were fixed the same way, and citing both.**
 
-> **Status: Week 2 of 3 complete.** Data layer, AI Search indexes, and an assistant that answers with citations, routes counting questions to SQL and declines what it can't support. Week 3 adds LLM-judged answer quality and harder test questions. Every number below comes from synthetic data and is labelled as such.
+> **Status: Week 2 of 3 complete and measured on Databricks.** Data layer, AI Search indexes, and an assistant that answers with citations, routes counting questions to SQL and declines what it can't support. Week 3 applies the fixes found by error analysis, adds harder questions and an LLM judge. Every number below comes from synthetic data.
 
 When an SPC chart goes out of control on the fab floor, the fix is usually already known: it sits in an SOP, or in a closure note someone wrote six months ago on the same tool. The problem is finding it. Closure notes are free text full of shorthand, searched by keyword if at all, and around 1 in 10 says nothing useful ("fixed", "see shift log"). Engineers lose time, and the same root cause gets rediscovered from scratch.
 
@@ -91,21 +91,27 @@ Example closure notes:
 
 Example question: *"Getting helium flow alarms on ETCH-04 and a few de-chuck errors. What should I check first?"* The answer should name the ESC helium leak, the leak-up test above 1.5 sccm, the o-ring fix and the 1.0 sccm release limit, citing SOP-ETCH-003 and past events.
 
-## Retrieval results
+## Results: first run (Week 2)
 
-Scored on the 49-question set by `src/fabrag/evaluate.py`. The ground truth is used **only** for scoring.
+Scored on the 49-question set by `src/fabrag/evaluate.py`, Databricks Free Edition, `databricks-gpt-oss-120b`, 0 errors. Ground truth is used **only** for scoring.
 
 | Metric | BM25 keyword baseline | AI Search hybrid |
 |---|---|---|
-| Routing accuracy (SQL vs retrieval) | 100% | *run `03_assistant` to fill in* |
-| Right SOP in top 4 | 100% | |
-| Right SOP ranked first | 95% | |
-| Past events with the correct root cause (precision at 5) | 75% | |
-| History questions: past events on that tool found | 94% | |
-| Out-of-scope questions declined | n/a (needs the LLM) | |
-| Answerable questions wrongly declined | n/a (needs the LLM) | |
+| Routing accuracy (SQL vs retrieval) | 100% | **100%** |
+| Right SOP in top 4 | 100% | 97.5% |
+| Right SOP ranked first | 95% | 92.5% |
+| Past events with the correct root cause (precision at 5) | 75.0% | **79.3%** |
+| History questions: past events on that tool found | **93.8%** | 83.8% |
+| Out-of-scope questions declined (6) | n/a | **100%** |
+| Answerable questions wrongly declined (40) | n/a | 7.5% (3) |
+| Counting questions answered correctly via SQL (3) | n/a | **3 of 3** (one returned the root cause name instead of the code) |
 
-**What this shows so far:** SOP lookup is easy on this question set; even keyword search gets the right SOP first 95% of the time, because engineers' questions share distinctive words with the SOPs. So SOP hit rate can't show what AI Search adds. The real test is **past-event precision**: closure notes are short, inconsistent shorthand, and only 3 in 4 events keyword search returns share the right root cause. Week 3 adds harder paraphrased questions (synonyms, shorthand, no shared keywords) so the SOP metrics become informative too.
+**What the first run showed:**
+- **Safety behaviour works.** Every out-of-scope question was declined, every counting question went to SQL, and answers cite their sources.
+- **Hybrid search did not beat keyword search yet.** It improved past-event precision (75% to 79%) but was slightly worse on SOP ranking and history recall. The questions share distinctive words with the SOPs, so keyword search is already near its ceiling; meaning-based search isn't being tested.
+- **Error analysis of the 3 "false declines"** found one cause: the *Acceptance criteria* section of the right SOP was not retrieved, because low-value sections (Purpose, Scope) took the slots. The prompt then made the model refuse the whole answer for one missing part. The SOP-level metric also counted one of these as a hit, because the right document was found but not the right section.
+
+**Fixes being made in Week 3:** always fetch the Checks, Procedure and Acceptance sections of the top SOP (parent-document retrieval); drop low-value sections from the index; allow partial answers; normalise citation formats (the model wrote `【S1】`); score procedure questions at section level; add a reranker and harder paraphrased questions; then re-measure.
 
 ## The evaluation set
 
