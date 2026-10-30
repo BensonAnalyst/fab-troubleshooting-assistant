@@ -4,6 +4,10 @@ from .knowledge import FAB_NAME, GENERAL_SOP, MODULES, ROOT_CAUSES
 
 EFFECTIVE_DATE = "2025-01-06"
 
+# Sections with little troubleshooting content. They stay in Silver but are not indexed,
+# because in Week 2 they took retrieval slots from Checks, Procedure and Acceptance criteria.
+LOW_VALUE_SECTION_PREFIXES = ("1. Purpose", "2. Scope", "11. Related documents")
+
 
 def _header(sop_id, title, module_label, platform, revision="C"):
     return (

@@ -11,6 +11,7 @@ from collections import Counter
 from pathlib import Path
 
 from .knowledge import VAGUE_NOTES
+from .sops import LOW_VALUE_SECTION_PREFIXES
 
 _TOKEN = re.compile(r"[a-z0-9]+(?:-[a-z0-9]+)*")
 _STOP = set("a an and are as at be by did do does for from had has have how i in is it its of on or our "
@@ -59,7 +60,8 @@ def _match(doc, filters):
 # ---------------------------------------------------------------------------------------
 # Build the same Gold records as gold.py, from the files, without Spark
 # ---------------------------------------------------------------------------------------
-def load_sop_chunks(sop_dir) -> list:
+def load_sop_chunks(sop_dir, include_low_value=False) -> list:
+    """Same chunks as gold_sop_chunks. include_low_value=True returns every section."""
     chunks = []
     for path in sorted(Path(sop_dir).glob("*.md")):
         text = path.read_text(encoding="utf-8")
@@ -70,6 +72,8 @@ def load_sop_chunks(sop_dir) -> list:
         for i, part in enumerate(parts, 1):
             section_title, _, body = part.partition("\n")
             body = body.strip()
+            if not include_low_value and section_title.strip().startswith(LOW_VALUE_SECTION_PREFIXES):
+                continue
             chunks.append({
                 "chunk_id": f"{sop_id}#{i:02d}", "sop_id": sop_id, "sop_title": title,
                 "section_title": section_title.strip(), "module_code": module_code,
@@ -97,6 +101,14 @@ def load_event_chunks(events_csv, root_causes_csv) -> list:
             out.append({"event_id": e["event_id"], "tool_id": e["tool_id"], "module": e["module"],
                         "event_date": e["event_ts"][:10], "root_cause_code": code, "retrieval_text": text})
     return out
+
+
+def baseline_sections_fn(data_dir):
+    """sections_fn(sop_id) for Assistant: all indexed sections of one SOP, from the files."""
+    by_sop = {}
+    for c in load_sop_chunks(Path(data_dir) / "sops"):
+        by_sop.setdefault(c["sop_id"], []).append(c)
+    return lambda sop_id: by_sop.get(sop_id, [])
 
 
 def baseline_search_fn(data_dir):

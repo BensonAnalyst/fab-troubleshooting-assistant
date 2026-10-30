@@ -241,13 +241,15 @@ def build_eval(rng, tools, events, rc_by_id):
             "qid": "", "type": "troubleshooting", "question": template.format(tool=tool),
             "expected_behavior": "answer", "expected_root_cause": rc_id, "expected_sop_ids": [rc["sop_id"]],
             "relevant_event_ids": examples, "expected_answer_points": points,
+            # Every troubleshooting answer needs the release criteria (section 7).
+            "expected_chunk_ids": [f"{rc['sop_id']}#07"],
         })
 
-    for question, sop_id, points in eval_spec.PROCEDURE:
+    for question, sop_id, points, sections in eval_spec.PROCEDURE:
         questions.append({
             "qid": "", "type": "procedure", "question": question, "expected_behavior": "answer",
             "expected_root_cause": None, "expected_sop_ids": [sop_id], "relevant_event_ids": [],
-            "expected_answer_points": points,
+            "expected_answer_points": points, "expected_chunk_ids": [f"{sop_id}#{n}" for n in sections],
         })
 
     pairs = Counter((e["tool_id"], e["_true_rc"]) for e in good if e["_true_rc"] in eval_spec.RC_SHORT)
@@ -296,6 +298,22 @@ def build_eval(rng, tools, events, rc_by_id):
             "decline_reason": reason,
         })
 
+    # Week 3 additions go last, so the Week 2 question IDs (Q001 to Q049) stay the same.
+    paraphrase_rng = random.Random(1)
+    for rc_id, template in eval_spec.PARAPHRASE.items():
+        rc = rc_by_id[rc_id]
+        module = rc["module"] if rc["module"] != "ANY" else eval_spec.CROSS_MODULE_TOOL[rc_id]
+        tool = paraphrase_rng.choice(tools_by_module[module])
+        _, points = eval_spec.TROUBLESHOOTING[rc_id]
+        questions.append({
+            "qid": "", "type": "paraphrase", "question": template.format(tool=tool),
+            "expected_behavior": "answer", "expected_root_cause": rc_id, "expected_sop_ids": [rc["sop_id"]],
+            "relevant_event_ids": [e["event_id"] for e in good if e["_true_rc"] == rc_id][:5],
+            "expected_answer_points": points, "expected_chunk_ids": [f"{rc['sop_id']}#07"],
+        })
+
+    for q in questions:
+        q.setdefault("expected_chunk_ids", [])
     for i, q in enumerate(questions, 1):
         q["qid"] = f"Q{i:03d}"
     return questions

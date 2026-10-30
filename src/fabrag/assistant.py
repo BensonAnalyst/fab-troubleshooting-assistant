@@ -29,9 +29,10 @@ SYSTEM_PROMPT = f"""You are the troubleshooting assistant for Northbridge Fab 1,
 You help process and equipment engineers respond to SPC out-of-control (OOC) events.
 
 Rules:
-1. Use ONLY the numbered sources provided. Every factual statement must cite its source, like [S1] or [E2].
+1. Use ONLY the numbered sources provided. Every factual statement must cite its source in square brackets, like [S1] or [E2].
 2. Never invent limits, values, part names, recipe steps or procedures that are not in the sources.
-3. If the sources do not contain what is needed to answer, start your reply with "{DECLINE_PREFIX}" and say in one sentence what is missing. Do not guess.
+3. Start your reply with "{DECLINE_PREFIX}" ONLY when the sources do not address the main question at all, and then say in one sentence what is missing. Do not guess.
+   If the sources answer the main question but one detail is missing, answer what you can and write "not in the retrieved sources" for that detail. Do not decline the whole answer.
 4. Do not rank, rate or judge individual people.
 5. Recommend verifying the measurement first (SOP-MET-001) when the symptom is a single point with no trend.
 6. Tool release always requires the acceptance criteria in the SOP and an engineer's sign-off.
@@ -52,7 +53,27 @@ RC-CVD-03 heater/thermocouple drift, RC-CVD-04 precursor delivery, RC-CMP-01 pad
 RC-CMP-02 slurry/filter scratches, RC-CMP-03 carrier head wear, RC-CMP-04 endpoint drift, RC-LITH-01 overlay drift,
 RC-LITH-02 chuck focus hot spot, RC-LITH-03 dose drift, RC-LITH-04 resist coat, RC-WET-01 aged bath,
 RC-WET-02 filter/pump particles, RC-WET-03 dryer watermarks, RC-MET-01 metrology false alarm, RC-GEN-01 unqualified change.
+When the question asks for a root cause, return both root_cause_code and root_cause_name.
 Return only the SQL, with no explanation and no code fences. Round averages to 1 decimal place."""
+
+# Sections every troubleshooting answer needs: checks, corrective procedure, acceptance criteria.
+EXPAND_SECTIONS = ("5.", "6.", "7.")
+
+
+def expand_top_sop(sop_hits: list, top_sop_sections: list, prefixes=EXPAND_SECTIONS) -> list:
+    """Parent-document retrieval: add the top SOP's key sections that search did not return.
+
+    The key sections go first, in document order, then the remaining search hits."""
+    have = {h["chunk_id"] for h in sop_hits}
+    extra = [c for c in top_sop_sections
+             if c["section_title"].startswith(prefixes) and c["chunk_id"] not in have]
+    if not extra:
+        return sop_hits
+    top_id = sop_hits[0]["sop_id"]
+    same = [h for h in sop_hits if h["sop_id"] == top_id] + extra
+    same.sort(key=lambda c: c["chunk_id"])
+    return same + [h for h in sop_hits if h["sop_id"] != top_id]
+
 
 _FORBIDDEN_SQL = re.compile(
     r"\b(insert|update|delete|merge|drop|create|alter|truncate|grant|revoke|call|copy|optimize|vacuum|refresh|set|use)\b",
@@ -74,6 +95,10 @@ class Answer:
     @property
     def retrieved_sop_ids(self):
         return list(dict.fromkeys(h["sop_id"] for h in self.sop_hits))
+
+    @property
+    def retrieved_chunk_ids(self):
+        return [h["chunk_id"] for h in self.sop_hits]
 
     @property
     def retrieved_event_ids(self):
@@ -134,19 +159,31 @@ def parse_hits(response: dict) -> list:
 # ---------------------------------------------------------------------------------------
 # Prompting
 # ---------------------------------------------------------------------------------------
-def build_messages(question: str, sop_hits: list, event_hits: list) -> list:
+def sources_text(sop_hits: list, event_hits: list) -> str:
     blocks = []
     for i, h in enumerate(sop_hits, 1):
         blocks.append(f"[S{i}] {h['chunk_id']}\n{h['retrieval_text']}")
     for i, h in enumerate(event_hits, 1):
         blocks.append(f"[E{i}] {h['retrieval_text']}")
-    sources = "\n\n".join(blocks) if blocks else "(no sources found)"
-    user = f"Question: {question}\n\nSources:\n\n{sources}"
+    return "\n\n".join(blocks) if blocks else "(no sources found)"
+
+
+def build_messages(question: str, sop_hits: list, event_hits: list) -> list:
+    user = f"Question: {question}\n\nSources:\n\n{sources_text(sop_hits, event_hits)}"
     return [{"role": "system", "content": SYSTEM_PROMPT}, {"role": "user", "content": user}]
 
 
+_CITE = re.compile(r"[\[【(（]\s*([SE]\d+)\s*[\]】)）]")
+
+
+def normalise_citations(text: str) -> str:
+    """Models sometimes cite as 【S1】 or (S1); rewrite every form to [S1]."""
+    return _CITE.sub(lambda m: f"[{m.group(1)}]", text)
+
+
 def citations(text: str) -> list:
-    return sorted(set(re.findall(r"\[(S\d+|E\d+)\]", text)), key=lambda c: (c[0], int(c[1:])))
+    found = {m.group(1) for m in _CITE.finditer(text)}
+    return sorted(found, key=lambda c: (c[0], int(c[1:])))
 
 
 # ---------------------------------------------------------------------------------------
@@ -179,19 +216,29 @@ def check_sql(sql: str) -> str:
 # ---------------------------------------------------------------------------------------
 class Assistant:
     def __init__(self, search_fn, llm_fn, sql_fn=None, sop_index="sop", event_index="events",
-                 k_sops=4, k_events=5, table_name="silver_ooc_events"):
+                 k_sops=4, k_events=5, table_name="silver_ooc_events", sections_fn=None,
+                 expand_sections=EXPAND_SECTIONS):
+        """sections_fn(sop_id) -> list of SOP chunk dicts. When given, the top SOP is expanded
+        with its key sections (parent-document retrieval), so release criteria are never missing."""
         self.search_fn, self.llm_fn, self.sql_fn = search_fn, llm_fn, sql_fn
         self.sop_index, self.event_index = sop_index, event_index
         self.k_sops, self.k_events = k_sops, k_events
         self.table_name = table_name
+        self.sections_fn, self.expand_sections = sections_fn, expand_sections
+
+    def retrieve(self, question: str):
+        sop_f, ev_f = search_filters(question)
+        sop_hits = self.search_fn(self.sop_index, question, sop_f, self.k_sops)
+        if self.sections_fn and sop_hits:
+            sop_hits = expand_top_sop(sop_hits, self.sections_fn(sop_hits[0]["sop_id"]), self.expand_sections)
+        event_hits = self.search_fn(self.event_index, question, ev_f, self.k_events)
+        return sop_hits, event_hits
 
     def ask(self, question: str) -> Answer:
         if route(question) == "sql":
             return self._ask_sql(question)
-        sop_f, ev_f = search_filters(question)
-        sop_hits = self.search_fn(self.sop_index, question, sop_f, self.k_sops)
-        event_hits = self.search_fn(self.event_index, question, ev_f, self.k_events)
-        text = self.llm_fn(build_messages(question, sop_hits, event_hits)).strip()
+        sop_hits, event_hits = self.retrieve(question)
+        text = normalise_citations(self.llm_fn(build_messages(question, sop_hits, event_hits)).strip())
         return Answer(question, "retrieval", text, sop_hits, event_hits,
                       declined=text.startswith(DECLINE_PREFIX))
 

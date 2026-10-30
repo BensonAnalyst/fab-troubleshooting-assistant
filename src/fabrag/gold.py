@@ -7,10 +7,15 @@ columns used as search filters. Low-quality closure notes are dropped here.
 from pyspark.sql import DataFrame
 from pyspark.sql import functions as F
 
+from .sops import LOW_VALUE_SECTION_PREFIXES
+
 
 def gold_sop_chunks(silver_sections: DataFrame) -> DataFrame:
     module_code = F.regexp_extract("sop_id", r"^SOP-([A-Z]+)-", 1)
-    return silver_sections.select(
+    low_value = F.lit(False)
+    for prefix in LOW_VALUE_SECTION_PREFIXES:
+        low_value = low_value | F.col("section_title").startswith(prefix)
+    return silver_sections.where(~low_value).select(
         "chunk_id", "sop_id", "sop_title", "section_title",
         # General and metrology SOPs apply to every module.
         F.when(module_code.isin("ETCH", "CVD", "CMP", "LITH", "WET"), module_code).otherwise(F.lit("ANY")).alias("module_code"),

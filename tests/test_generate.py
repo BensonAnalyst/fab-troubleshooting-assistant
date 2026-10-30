@@ -69,11 +69,11 @@ def test_eval_references_exist(data):
     event_ids = {e["event_id"] for e in _rows(out / "raw" / "ooc_events.csv")}
     truth = {r["event_id"]: r["true_root_cause"] for r in _rows(out / "ground_truth" / "ooc_ground_truth.csv")}
     questions = [json.loads(line) for line in (out / "eval" / "eval_questions.jsonl").read_text().splitlines()]
-    assert {q["type"] for q in questions} == {"troubleshooting", "procedure", "history", "aggregate", "unanswerable"}
+    assert {q["type"] for q in questions} == {"troubleshooting", "procedure", "history", "aggregate", "unanswerable", "paraphrase"}
     for q in questions:
         assert set(q["expected_sop_ids"]) <= sops, q["qid"]
         assert set(q["relevant_event_ids"]) <= event_ids, q["qid"]
-        if q["type"] in ("troubleshooting", "history"):
+        if q["type"] in ("troubleshooting", "history", "paraphrase"):
             assert q["relevant_event_ids"], q["qid"]
             assert all(truth[e] == q["expected_root_cause"] for e in q["relevant_event_ids"]), q["qid"]
 

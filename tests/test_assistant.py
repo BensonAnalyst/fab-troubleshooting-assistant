@@ -134,7 +134,8 @@ def test_bm25_baseline_metrics(data):
 
 def test_baseline_chunks_match_gold_counts(data):
     out, _, _ = data
-    assert len(load_sop_chunks(out / "sops")) == 22 * 11 + 5
+    assert len(load_sop_chunks(out / "sops", include_low_value=True)) == 22 * 11 + 5
+    assert len(load_sop_chunks(out / "sops")) == 22 * 8 + 4
     events = load_event_chunks(out / "raw" / "ooc_events.csv", out / "raw" / "root_causes.csv")
     with open(out / "ground_truth" / "ooc_ground_truth.csv", newline="") as f:
         assert len(events) == sum(r["low_quality_note"] == "False" for r in csv.DictReader(f))

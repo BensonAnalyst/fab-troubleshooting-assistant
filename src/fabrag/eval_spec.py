@@ -128,20 +128,43 @@ TROUBLESHOOTING = {
 # Which module's tool to put in the question for cross-module root causes
 CROSS_MODULE_TOOL = {"RC-MET-01": "ETCH", "RC-GEN-01": "CVD"}
 
+# (question, expected SOP, answer points, SOP sections that contain the answer)
 PROCEDURE = [
-    ("What's the wet clean interval for Kestrel K9 etch chambers?", "SOP-ETCH-001", ["1,200 RF hours"]),
-    ("What leak-up rate is acceptable after replacing a focus ring?", "SOP-ETCH-002", ["Below 2 mTorr/min"]),
-    ("What PPE do I need for a wet bench bath change?", "SOP-WET-001", ["Full chemical PPE", "Buddy system (HF)"]),
-    ("When should an MFC be replaced instead of just recalibrated?", "SOP-ETCH-005", ["Replace above 5% deviation on rate-of-rise", "Recalibrate above 2%"]),
-    ("What are the life limits for the CMP carrier head membrane and retaining ring?", "SOP-CMP-003", ["Membrane 3,000 wafers", "Retaining ring 6,000 wafers"]),
-    ("What must an OOC closure note contain?", "SOP-GEN-001", ["Symptom", "Root cause with code and confirming check", "Action including parts", "Verification result"]),
-    ("How fast must an OOC be acknowledged, and when does a down tool have to be escalated?", "SOP-GEN-001", ["Acknowledge within 15 minutes", "Escalate if down longer than 8 hours"]),
-    ("What DI water resistivity is needed for the wet bench dryer?", "SOP-WET-003", ["Above 17.5 MOhm-cm"]),
-    ("Who is allowed to replace the ESC on a Kestrel K9?", "SOP-ETCH-003", ["Vendor replacement only"]),
-    ("How cool does a CVD chamber need to be before a heater replacement?", "SOP-CVD-003", ["Below 50 C"]),
-    ("What overlay value do we need after a stage calibration?", "SOP-LITH-001", ["At or below 5.0 nm"]),
-    ("How long should I wait after a bath change before running the etch rate monitor?", "SOP-WET-001", ["30 minutes"]),
+    ("What's the wet clean interval for Kestrel K9 etch chambers?", "SOP-ETCH-001", ["1,200 RF hours"], ["05"]),
+    ("What leak-up rate is acceptable after replacing a focus ring?", "SOP-ETCH-002", ["Below 2 mTorr/min"], ["07"]),
+    ("What PPE do I need for a wet bench bath change?", "SOP-WET-001", ["Full chemical PPE", "Buddy system (HF)"], ["04"]),
+    ("When should an MFC be replaced instead of just recalibrated?", "SOP-ETCH-005",
+     ["Replace above 5% deviation on rate-of-rise", "Recalibrate above 2%"], ["06"]),
+    ("What are the life limits for the CMP carrier head membrane and retaining ring?", "SOP-CMP-003",
+     ["Membrane 3,000 wafers", "Retaining ring 6,000 wafers"], ["05"]),
+    ("What must an OOC closure note contain?", "SOP-GEN-001",
+     ["Symptom", "Root cause with code and confirming check", "Action including parts", "Verification result"], ["04"]),
+    ("How fast must an OOC be acknowledged, and when does a down tool have to be escalated?", "SOP-GEN-001",
+     ["Acknowledge within 15 minutes", "Escalate if down longer than 8 hours"], ["03"]),
+    ("What DI water resistivity is needed for the wet bench dryer?", "SOP-WET-003", ["Above 17.5 MOhm-cm"], ["05"]),
+    ("Who is allowed to replace the ESC on a Kestrel K9?", "SOP-ETCH-003", ["Vendor replacement only"], ["06", "08", "09"]),
+    ("How cool does a CVD chamber need to be before a heater replacement?", "SOP-CVD-003", ["Below 50 C"], ["04"]),
+    ("What overlay value do we need after a stage calibration?", "SOP-LITH-001", ["At or below 5.0 nm"], ["07"]),
+    ("How long should I wait after a bath change before running the etch rate monitor?", "SOP-WET-001", ["30 minutes"], ["06"]),
 ]
+
+# Harder versions of troubleshooting questions (added in Week 3). They describe the symptom in plain
+# words that avoid the SOP's own vocabulary, so keyword search cannot match on shared terms.
+PARAPHRASE = {
+    "RC-ETCH-01": "The tool {tool} is getting slower and slower at clearing the film over the past week, "
+                  "and each run needs longer to finish. Nothing was changed. What's wrong?",
+    "RC-ETCH-02": "Wafers from {tool} come out over-processed in a ring at the rim, a bit worse every day. Which worn part should I suspect?",
+    "RC-ETCH-03": "On {tool} the wafer doesn't stay clamped properly and the backside cooling keeps alarming. Where do I start?",
+    "RC-ETCH-04": "Energy bouncing back toward the generator keeps jumping on {tool} and the glow looks unstable. What should I check?",
+    "RC-CVD-01": "Film from {tool} is thinner in the middle of the wafer than at the rim, and it's worse each day. Why?",
+    "RC-CVD-03": "Films from {tool} have the wrong optical constant and the strain is off, yet the film is as thick as normal. Likely cause?",
+    "RC-CMP-01": "Polishing on {tool} takes longer and longer to take off the same amount, and the polishing surface looks glossy.",
+    "RC-CMP-02": "Wafers off {tool} show fine curved marks under inspection, starting right after yesterday's chemistry delivery.",
+    "RC-LITH-02": "Every wafer from {tool} is blurry at exactly the same spot. What do I do?",
+    "RC-WET-01": "The oxide strip on {tool} gets weaker as the day goes on; the chemistry was last replaced two days ago.",
+    "RC-WET-03": "Spots shaped like dried droplets show up on wafers after the final drying step on {tool}.",
+    "RC-MET-01": "One reading from {tool} jumped outside the limits, but every earlier reading was normal. Do I stop the tool?",
+}
 
 # Questions the knowledge base cannot answer. The assistant should say so, not guess.
 UNANSWERABLE = [
