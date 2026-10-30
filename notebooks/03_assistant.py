@@ -3,8 +3,9 @@
 # MAGIC # 03 · The assistant: ask it questions
 # MAGIC
 # MAGIC Connects the assistant (`src/fabrag/assistant.py`) to AI Search, a chat model and Spark SQL, with the
-# MAGIC Week 3 retrieval: **hybrid search + reranker + parent-document expansion**. Change the question in the
-# MAGIC last cell to try your own. The full evaluation is in `04_evaluate`.
+# MAGIC setting chosen in Week 3 from the evaluation: **keyword search (BM25) for SOPs, AI Search hybrid for past events,
+# MAGIC plus parent-document expansion** (`split_expand`). Change the question in the last cell to try your own.
+# MAGIC The full evaluation is in `04_evaluate`.
 # MAGIC **Run `02_build_index` first.**
 
 # COMMAND ----------
@@ -21,13 +22,13 @@ dbutils.widgets.text("catalog", "workspace")
 dbutils.widgets.text("schema", "fab_rag")
 dbutils.widgets.text("endpoint", "fab-rag-endpoint")
 dbutils.widgets.text("chat_model", "databricks-gpt-oss-120b")
-dbutils.widgets.dropdown("rerank", "false", ["true", "false"])  # the reranker is not available on Free Edition
+dbutils.widgets.dropdown("sop_search", "bm25", ["bm25", "hybrid"])  # bm25 ranked SOPs best in 04_evaluate
 
 catalog = dbutils.widgets.get("catalog")
 schema = dbutils.widgets.get("schema")
 endpoint = dbutils.widgets.get("endpoint")
 chat_model = dbutils.widgets.get("chat_model")
-rerank = dbutils.widgets.get("rerank") == "true"
+sop_search = dbutils.widgets.get("sop_search")
 fq = lambda name: f"{catalog}.{schema}.{name}"
 
 # COMMAND ----------
@@ -41,7 +42,8 @@ from databricks.ai_search.client import AISearchClient
 from databricks.sdk import WorkspaceClient
 
 from fabrag.assistant import Assistant, citations
-from fabrag.backends import make_llm_fn, make_search_fn, make_sections_fn, make_sql_fn
+from fabrag.backends import make_llm_fn, make_search_fn, make_sections_fn, make_sql_fn, split_search_fn
+from fabrag.baseline import baseline_search_fn, baseline_sections_fn
 
 w = WorkspaceClient()
 llm = make_llm_fn(w, chat_model)
@@ -51,14 +53,14 @@ except Exception as exc:
     names = sorted(e.name for e in w.serving_endpoints.list())
     raise RuntimeError(f"Chat endpoint '{chat_model}' failed ({exc}). Available endpoints: {names}")
 
-bot = Assistant(
-    make_search_fn(AISearchClient(), endpoint, {"sop": fq("idx_sop_chunks"), "events": fq("idx_event_chunks")},
-                   "HYBRID", rerank=rerank),
-    llm,
-    sql_fn=make_sql_fn(spark),
-    sections_fn=make_sections_fn(spark, fq("gold_sop_chunks")),
-    table_name=fq("silver_ooc_events"),
-)
+hybrid = make_search_fn(AISearchClient(), endpoint, {"sop": fq("idx_sop_chunks"), "events": fq("idx_event_chunks")}, "HYBRID")
+if sop_search == "bm25":
+    data_dir = os.path.abspath("../data")  # the repo's own data folder
+    search_fn, sections_fn = split_search_fn(baseline_search_fn(data_dir), hybrid), baseline_sections_fn(data_dir)
+else:
+    search_fn, sections_fn = hybrid, make_sections_fn(spark, fq("gold_sop_chunks"))
+
+bot = Assistant(search_fn, llm, sql_fn=make_sql_fn(spark), sections_fn=sections_fn, table_name=fq("silver_ooc_events"))
 
 # COMMAND ----------
 

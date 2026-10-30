@@ -2,7 +2,7 @@
 
 **An assistant that answers "this tool just went out of control, what do I check?" by retrieving the right SOP and the past OOC cases that were fixed the same way, and citing both.**
 
-> **Status: Week 3 code complete; Week 3 results pending the Databricks run.** Data layer, AI Search indexes, an assistant that answers with citations, routes counting questions to SQL and declines what it can't support, plus an evaluation harness with an LLM judge and MLflow tracking. Every number below comes from synthetic data.
+> **Status: Weeks 1 to 3 complete.** On its evaluation set, the assistant ranks the right SOP first **97.5%** of the time, always retrieves the release criteria, declines **every** out-of-scope question, and its answers cover **94.6%** of the expected points with **80.4%** fully grounded in the sources (LLM judge). Every number comes from synthetic data; see [Week 3 results](#week-3-results).
 
 When an SPC chart goes out of control on the fab floor, the fix is usually already known: it sits in an SOP, or in a closure note someone wrote six months ago on the same tool. The problem is finding it. Closure notes are free text full of shorthand, searched by keyword if at all, and around 1 in 10 says nothing useful ("fixed", "see shift log"). Engineers lose time, and the same root cause gets rediscovered from scratch.
 
@@ -15,15 +15,18 @@ This project is a retrieval-augmented (RAG) assistant over two sources:
 
 ---
 
-## Before vs After (target state, to be measured in Week 3)
+## Before vs After
 
-| | Current state | Target state |
+| | Current state (manual) | Future state (this assistant, measured) |
 |---|---|---|
-| Finding a past fix for the same symptom | Keyword search or asking around; often not found | Semantic search across all closure notes, with the matching events cited |
-| Finding the right SOP | Browse the SOP index | Retrieved from the symptom description |
-| Vague closure notes ("fixed") | Mixed in with useful ones | Flagged in Silver and **excluded from the index** |
-| Answers to questions it can't support | n/a | **Declines** instead of guessing, measured on 6 out-of-scope questions |
-| Counting questions ("how many OOCs on CMP-02 in Q2?") | Manual | Routed to SQL, not answered from retrieved text |
+| Finding the right SOP | Browse the SOP index | Retrieved from the symptom: right SOP ranked first **97.5%**, in the top 4 **100%** |
+| Release criteria for the fix | Look them up separately | Always included: **100%** of troubleshooting answers had the acceptance criteria retrieved |
+| Finding a past fix on the same tool | Keyword search or asking around; often not found | History questions found **100%** of past events on that tool, with fixes summarised |
+| Vague closure notes ("fixed") | Mixed in with useful ones | Flagged in Silver and **excluded from the index** (10.2% of notes) |
+| Questions it can't support | n/a | **Declined 6 of 6**; only 1 of 40 answerable questions wrongly declined |
+| Counting questions ("how many OOCs on CMP-02 in Q2?") | Manual query | Routed to SQL: **3 of 3** correct |
+
+The assistant is decision support: it shortens the search, and the engineer still decides and signs off the tool release.
 
 ---
 
@@ -37,11 +40,11 @@ flowchart LR
     B --> S1[(silver_ooc_events<br/>typed, note quality)]
     B --> S2[(silver_sop_sections<br/>1 chunk per section)]
   end
-  subgraph Retrieval["Retrieval (Week 2)"]
+  subgraph Retrieval["Retrieval (Weeks 2-3)"]
     S1 -->|usable notes only| GE[(gold_event_chunks)]
     S2 --> GS[(gold_sop_chunks)]
     GE --> IE[AI Search index<br/>hybrid: vectors + keywords]
-    GS --> IS[AI Search index<br/>hybrid: vectors + keywords]
+    GS --> IS[Keyword search BM25<br/>chosen in Week 3]
   end
   Q[Engineer's question] --> RT{Router}
   RT -->|"how many / average / most common"| SQL[Text-to-SQL<br/>read-only guard] --> S1
@@ -86,7 +89,7 @@ Example closure notes:
 
 1. **Route.** Counting questions ("how many", "average", "most common") go to **SQL**: an LLM writes one query, a guard allows only a single `SELECT` on `silver_ooc_events` (no writes, no other tables, never the ground truth), and Spark runs it. Everything else goes to retrieval.
 2. **Filter.** A tool ID in the question (`ETCH-04`) restricts SOPs to that module plus the general SOPs, and events to that module. History questions ("has ETCH-03 had this before?") filter events to that exact tool.
-3. **Retrieve.** Top 4 SOP sections and top 5 past events from **AI Search hybrid search**, which combines meaning-based vectors with exact keyword matching. Keywords matter here: `RC-ETCH-03`, `He leak-up` and tool IDs must match exactly. *(Week 3)* An optional **reranker** re-scores the results, and **parent-document expansion** always adds the top SOP's Checks, Procedure and Acceptance criteria sections, so release limits are never missing.
+3. **Retrieve.** Top 4 SOP sections and top 5 past events (10 for history questions). *(Week 3, chosen from the evaluation)* SOPs come from **keyword search (BM25)**, past events from **AI Search hybrid search** (vectors plus keywords), and **parent-document expansion** always adds the top SOP's Checks, Procedure and Acceptance criteria sections, so release limits are never missing.
 4. **Answer.** The chat model (default `databricks-gpt-oss-120b`) answers **only from the numbered sources**, cites them as `[S1]` / `[E2]`, uses a fixed structure (likely cause, checks, fix, release criteria, similar past events), and must reply *"I can't answer that from the knowledge base"* when the sources don't cover the question.
 
 Example question: *"Getting helium flow alarms on ETCH-04 and a few de-chuck errors. What should I check first?"* The answer should name the ESC helium leak, the leak-up test above 1.5 sccm, the o-ring fix and the 1.0 sccm release limit, citing SOP-ETCH-003 and past events.
@@ -119,7 +122,7 @@ Scored on the 49-question set by `src/fabrag/evaluate.py`, Databricks Free Editi
 | **Low-value sections removed from the index** (Purpose, Scope, Related documents): 247 to 180 chunks | They took retrieval slots from Checks, Procedure and Acceptance |
 | **Partial answers allowed**: decline only when the main question is unanswerable | The model refused a whole correct answer for one missing detail |
 | **Citations normalised** (`【S1】` and `(S1)` become `[S1]`) | gpt-oss cited in CJK brackets, so citations went uncounted |
-| **Optional reranker** (Databricks reranker on AI Search results) | Loosely related events took history slots |
+| **Optional reranker** (Databricks reranker on AI Search results) | Loosely related events took history slots. *Not available on Free Edition, so not measured* |
 | **Section-level scoring**: procedure questions name the section that holds the answer | One "hit" in Week 2 found the right SOP but not the right section |
 | **12 paraphrased questions** that avoid the SOP's vocabulary ("wafer doesn't stay clamped" for a helium leak) | Week 2 questions shared keywords with the SOPs, so they could not show what meaning-based search adds |
 | **LLM judge**: coverage of the expected points, and groundedness in the sources | Retrieval metrics alone don't say whether the written answer is right |
@@ -129,7 +132,54 @@ Scored on the 49-question set by `src/fabrag/evaluate.py`, Databricks Free Editi
 
 ### Week 3 results
 
-*To be filled in from `04_evaluate` on Databricks.*
+Databricks Free Edition, `databricks-gpt-oss-120b` for answers and as the judge, 61 questions, 0 errors.
+
+**1. Which retrieval setting? (section 1 of `04_evaluate`, no chat model)**
+
+| | BM25 keyword | Vector only | AI hybrid | AI hybrid + expand | BM25 + expand | **Split + expand** (chosen) |
+|---|---|---|---|---|---|---|
+| Right SOP ranked first | 97.5% | 90.0% | 90.0% | 90.0% | 97.5% | **97.5%** |
+| ...on paraphrased questions | 83.3% | 58.3% | 58.3% | 58.3% | 83.3% | **83.3%** |
+| Release criteria retrieved | 45.5% | 22.7% | 45.5% | 90.9% | 100% | **100%** |
+| Past events with the right root cause | 67.9% | 70.0% | 74.3% | 74.3% | 67.9% | **74.3%** |
+
+The finding I didn't expect: **keyword search beat AI search at ranking SOPs**, even on questions reworded to avoid the SOP's vocabulary. SOPs share a fixed equipment vocabulary, while closure notes are free text, where meaning-based search does better. So the final setting, `split_expand`, uses each where it wins: BM25 for SOPs, hybrid for past events, plus parent-document expansion. Expansion alone took "release criteria retrieved" from 45% to 100%.
+
+**2. Before vs After (same 49 questions as Week 2)**
+
+| Metric | Week 2 | Week 3 | |
+|---|---|---|---|
+| Right SOP ranked first | 92.5% | **97.5%** | ✅ |
+| History: past events on that tool found | 83.8% | **100%** | ✅ |
+| Answerable questions wrongly declined | 7.5% (3) | **2.5% (1)** | ✅ |
+| Release criteria retrieved (troubleshooting) | not measured | **100%** | ✅ |
+| Out-of-scope questions declined | 100% | 100% | held |
+| Routing and SQL answers | 100%, 3 of 3 | 100%, 3 of 3 | held |
+| Past events with the right root cause | 79.3% | 74.3% | ⚠️ trade-off: history questions now fetch 10 events, so more are off-topic |
+
+**3. Is the written answer right? (LLM judge, all answered questions)**
+
+| | Score |
+|---|---|
+| Expected points covered | **94.6%** (troubleshooting 100%, history 100%, paraphrase 93.3%, procedure 83.3%) |
+| Answers with every claim supported by the sources (groundedness) | **80.4%** |
+| Judge failures | 0 |
+
+**How groundedness went from 63.5% to 80.4%, and what I learned about evaluating the judge:**
+1. **The judge failed silently at first.** With an 800-token limit, the reasoning model ran out of tokens before writing its verdict, so 9 of 10 answers had no score. Fixed with a larger budget, a parser that recovers cut-off replies, and a re-grade step that scores saved answers without regenerating them.
+2. **First real score: 63.5%.** I read every flagged answer instead of trusting the number. Three causes:
+   - *The judge was wrong:* it hadn't been told the fab's standing rules ("release needs engineer sign-off"), so it marked them as unsupported. The judge now sees the same policy text as the assistant.
+   - *The assistant misapplied a rule:* "verify the measurement first" is for a single odd reading, but it was added to trends and alarms. The rule is now scoped.
+   - *The assistant filled gaps from general knowledge* when retrieval returned the wrong SOP, including release criteria from an unrelated SOP. This is the dangerous one in a fab. The prompt now forbids it, and the split retrieval removes most of the wrong-SOP cases.
+3. **Result: 76.9%, then 80.4%** with the split retrieval.
+
+**What still goes wrong (12 of 52 judged answers flagged):**
+- Mostly small extra claims, such as "cleaned twice" stated for every past event when only some notes say so, or "no similar past events" when the sources are simply silent.
+- **One wrong-module retrieval:** *"How cool does a CVD chamber need to be before a heater replacement?"* got an etch SOP, because the question names the module but no tool ID. Fixed after the run by recognising module and platform names (CVD, CMP, Kestrel K9 and so on); offline, procedure section hits went from 91.7% to 100% with nothing else changing. Not yet re-measured on Databricks.
+- **One over-cautious decline:** *"Who is allowed to replace the ESC?"*. The retrieved procedure says "escalate for ESC replacement with the vendor", but the model wanted an explicit statement. Left as is: the prompt is deliberately strict, and a decline is safer than an invented answer.
+- The judge is itself an LLM, so its flags need spot checks; about half of the remaining ones are judgement calls.
+
+Median time per question was about 30 s, which includes the answer and the judge call; answering alone is roughly half of that.
 
 
 ## The evaluation set
@@ -154,7 +204,7 @@ Each question carries its expected SOP IDs, relevant event IDs and the answer po
 **Locally (tests):**
 ```bash
 pip install -r requirements-dev.txt     # pytest + pyspark (needs Java 17+)
-pytest -q                               # 43 tests: data, DQ rules, chunking, routing, SQL guard, assistant, judge
+pytest -q                               # 48 tests: data, DQ rules, chunking, routing, SQL guard, assistant, judge
 PYTHONPATH=src python -m fabrag.generate --out data   # regenerate the dataset
 ```
 
@@ -177,7 +227,8 @@ PYTHONPATH=src python -m fabrag.generate --out data   # regenerate the dataset
 - **Keep ground truth out of the knowledge base.** The engineer-entered root cause code is indexed (it's real-world data); the true label is held back for scoring only.
 - **Counting questions go to SQL.** Retrieval returns the top few chunks; it cannot count 450 events. The eval set checks that the assistant routes these instead of answering confidently and wrongly.
 - **No Python UDFs in Silver**, so the same transforms run on serverless compute and in local tests.
-- **Hybrid search, not vectors alone.** Fab text is full of exact identifiers (tool IDs, root cause codes, parameter names) that pure embeddings blur together.
+- **Keyword search for SOPs, hybrid search for past events.** Chosen from measurement, not assumed: on this corpus BM25 ranked SOPs better than AI Search (97.5% vs 90% first), while hybrid found better past events (74% vs 68%). Fab text is full of exact identifiers (tool IDs, root cause codes, parameter names) that pure embeddings blur together.
+- **Evaluate the evaluator.** Every judge flag in the first run was read by hand, which found a silent judge failure and a judge that didn't know the fab's rules, before any change was made to the assistant.
 - **Backends are injected.** The assistant takes `search_fn`, `llm_fn` and `sql_fn` as plain functions, so the same code runs on Databricks and in offline tests with a BM25 index and a fake LLM.
 - **Gold tables are MERGEd, not overwritten**, so re-running only re-embeds rows that changed.
 
@@ -185,8 +236,7 @@ PYTHONPATH=src python -m fabrag.generate --out data   # regenerate the dataset
 
 - [x] **Week 1:** synthetic dataset, SOP library, evaluation set, Bronze/Silver tables, DQ scorecard, tests, CI
 - [x] **Week 2:** Gold tables, AI Search hybrid indexes with managed embeddings, assistant with citations, SQL routing with a read-only guard, retrieval metrics against a BM25 baseline
-- [x] **Week 3 (code):** fixes from error analysis, reranker, parent-document expansion, paraphrased questions, LLM judge, MLflow tracking, Before vs After
-- [ ] **Week 3 (results):** run `04_evaluate` and record the numbers here
+- [x] **Week 3:** fixes from error analysis, parent-document expansion, paraphrased questions, LLM judge (and fixing the judge), split retrieval chosen from the evaluation, MLflow tracking, Before vs After
 - [ ] **Next:** chat UI as a Databricks App
 
 ## Limitations
@@ -194,6 +244,8 @@ PYTHONPATH=src python -m fabrag.generate --out data   # regenerate the dataset
 - Synthetic data is cleaner than reality: real closure notes mix languages, reference people and lots, and contain typos this generator only partly imitates.
 - 22 root causes is a small taxonomy; a real fab has hundreds, with overlapping symptoms.
 - The assistant is decision support. Tool release still requires the acceptance criteria in the SOP and an engineer's sign-off.
+- BM25 for SOPs runs in memory over the repo's SOP files: fine for 180 chunks. At scale it would move to a search service, or AI Search with a tuned keyword weight.
+- The reranker could not be tested on Free Edition, and the judge uses the same model family as the assistant, which can make it lenient on that model's style.
 
 ## Repo structure
 

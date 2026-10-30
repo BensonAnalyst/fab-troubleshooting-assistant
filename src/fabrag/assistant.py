@@ -128,10 +128,19 @@ def tool_ids(question: str) -> list:
     return [m.group(0).upper() for m in TOOL_RE.finditer(question)]
 
 
+# A module named without a tool ID ("a CVD chamber", "on a Kestrel K9") still narrows the SOP search.
+# Only unambiguous names: "etch" and "wet" also appear in phrases like "etch rate" and "wet clean".
+MODULE_WORD_RE = re.compile(r"\b(?:(CVD)|(CMP)|(Kestrel)|(Halcyon)|(Polaris)|(Meridian)|(Cascade))\b")
+_MODULE_BY_GROUP = ("CVD", "CMP", "ETCH", "CVD", "CMP", "LITH", "WET")
+
+
 def module_of(question: str):
     tools = tool_ids(question)
     if tools:
         return tools[0].split("-")[0]
+    m = MODULE_WORD_RE.search(question)
+    if m:
+        return _MODULE_BY_GROUP[m.lastindex - 1]
     return None
 
 
@@ -185,7 +194,8 @@ def build_messages(question: str, sop_hits: list, event_hits: list) -> list:
     return [{"role": "system", "content": SYSTEM_PROMPT}, {"role": "user", "content": user}]
 
 
-_CITE = re.compile(r"[\[【(（]\s*([SE]\d+)\s*[\]】)）]")
+# Also catches 【S5†L1-L2】, where the model adds its own line references after a dagger.
+_CITE = re.compile(r"[\[【(（]\s*([SE]\d+)\s*(?:†[^\]】)）]*)?[\]】)）]")
 
 
 def normalise_citations(text: str) -> str:

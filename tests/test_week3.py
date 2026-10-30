@@ -228,3 +228,11 @@ def test_split_search_routes_by_index():
     from fabrag.backends import split_search_fn
     fn = split_search_fn(lambda *a: ["bm25"], lambda *a: ["hybrid"])
     assert fn("sop", "q", None, 4) == ["bm25"] and fn("events", "q", None, 5) == ["hybrid"]
+
+
+def test_module_named_without_tool_id_filters_sops():
+    from fabrag.assistant import module_of, normalise_citations
+    assert module_of("How cool does a CVD chamber need to be before a heater replacement?") == "CVD"
+    assert module_of("Who is allowed to replace the ESC on a Kestrel K9?") == "ETCH"
+    assert module_of("What is the etch rate after a wet clean?") is None  # ambiguous words do not filter
+    assert normalise_citations("see 【S5†L1-L2】") == "see [S5]"
