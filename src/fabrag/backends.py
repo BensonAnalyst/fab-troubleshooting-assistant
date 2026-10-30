@@ -59,3 +59,11 @@ def make_sections_fn(spark, gold_sop_table: str):
 
 def make_sql_fn(spark, limit: int = 50):
     return lambda sql: [r.asDict() for r in spark.sql(sql).limit(limit).collect()]
+
+
+def split_search_fn(sop_search_fn, event_search_fn):
+    """Use a different retriever per index, e.g. keyword search for SOPs and hybrid search for past events."""
+    def search(index, query, filters, k):
+        return (sop_search_fn if index == "sop" else event_search_fn)(index, query, filters, k)
+
+    return search

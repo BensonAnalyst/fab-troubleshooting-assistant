@@ -222,3 +222,9 @@ def test_judge_sees_fab_policy():
     from fabrag.judge import build_judge_messages
     msg = build_judge_messages("q", ["p"], "src", "a")[0]["content"]
     assert FAB_POLICY in msg and FAB_POLICY in SYSTEM_PROMPT
+
+
+def test_split_search_routes_by_index():
+    from fabrag.backends import split_search_fn
+    fn = split_search_fn(lambda *a: ["bm25"], lambda *a: ["hybrid"])
+    assert fn("sop", "q", None, 4) == ["bm25"] and fn("events", "q", None, 5) == ["hybrid"]

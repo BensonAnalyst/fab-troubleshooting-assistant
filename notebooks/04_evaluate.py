@@ -26,7 +26,7 @@ dbutils.widgets.text("schema", "fab_rag")
 dbutils.widgets.text("endpoint", "fab-rag-endpoint")
 dbutils.widgets.text("chat_model", "databricks-gpt-oss-120b")
 dbutils.widgets.text("judge_model", "databricks-gpt-oss-120b")
-dbutils.widgets.text("final_config", "hybrid_expand")  # hybrid_rerank_expand needs the reranker (not on Free Edition)
+dbutils.widgets.text("final_config", "split_expand")  # any name from section 1; the reranker configs need a paid workspace
 
 catalog = dbutils.widgets.get("catalog")
 schema = dbutils.widgets.get("schema")
@@ -52,7 +52,7 @@ from databricks.ai_search.client import AISearchClient
 from databricks.sdk import WorkspaceClient
 
 from fabrag.assistant import Assistant, citations, route, sources_text
-from fabrag.backends import make_llm_fn, make_search_fn, make_sections_fn, make_sql_fn
+from fabrag.backends import make_llm_fn, make_search_fn, make_sections_fn, make_sql_fn, split_search_fn
 from fabrag.baseline import baseline_search_fn, baseline_sections_fn
 from fabrag.evaluate import aggregate_correct, retrieval_metrics
 from fabrag.judge import judge_answer, judge_metrics
@@ -89,6 +89,7 @@ def log_mlflow(run_name, params, metrics, table=None):
 # COMMAND ----------
 
 # MAGIC %md ## 1. Compare retrieval settings (no chat model needed)
+# MAGIC `split` = keyword search (BM25) for SOPs, hybrid AI Search for past events.
 # MAGIC `expand` = parent-document retrieval: the top SOP's Checks, Procedure and Acceptance sections are always added.
 
 # COMMAND ----------
@@ -102,6 +103,8 @@ CONFIGS = {
     "vector":               (make_search_fn(client, endpoint, INDEXES, "ANN"), None),
     "hybrid":               (make_search_fn(client, endpoint, INDEXES, "HYBRID"), None),
     "hybrid_expand":        (make_search_fn(client, endpoint, INDEXES, "HYBRID"), ai_sections),
+    # Week 3 finding: keyword search ranks SOPs better, hybrid search finds better past events. Use each where it wins.
+    "split_expand":         (split_search_fn(bm25_search, make_search_fn(client, endpoint, INDEXES, "HYBRID")), bm25_sections),
     "hybrid_rerank":        (make_search_fn(client, endpoint, INDEXES, "HYBRID", rerank=True), None),
     "hybrid_rerank_expand": (make_search_fn(client, endpoint, INDEXES, "HYBRID", rerank=True), ai_sections),
 }
@@ -146,7 +149,7 @@ display(spark.createDataFrame(
 # COMMAND ----------
 
 if final_config not in settings:
-    fallback = next(c for c in ("hybrid_expand", "hybrid", "bm25_expand") if c in settings)
+    fallback = next(c for c in ("split_expand", "hybrid_expand", "hybrid", "bm25_expand") if c in settings)
     print(f"'{final_config}' is not available; using '{fallback}'")
     final_config = fallback
 
