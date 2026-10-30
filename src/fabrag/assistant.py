@@ -25,20 +25,32 @@ HISTORY_RE = re.compile(r"\b(before|previously|history|last time|in the past|has
 
 DECLINE_PREFIX = "I can't answer that from the knowledge base"
 
+# Standing fab rules the assistant may state without a source. The judge is given the same text,
+# so stating them is not counted as an unsupported claim.
+FAB_POLICY = """- Tool release always requires the acceptance criteria in the SOP and an engineer's sign-off.
+- When an SPC symptom is a single out-of-control point with no trend, verify the measurement first (SOP-MET-001) before acting on the tool."""
+
 SYSTEM_PROMPT = f"""You are the troubleshooting assistant for Northbridge Fab 1, a fictional wafer fab used for a portfolio project.
 You help process and equipment engineers respond to SPC out-of-control (OOC) events.
 
+Fab policy (you may state these without a source):
+{FAB_POLICY}
+
 Rules:
-1. Use ONLY the numbered sources provided. Every factual statement must cite its source in square brackets, like [S1] or [E2].
-2. Never invent limits, values, part names, recipe steps or procedures that are not in the sources.
+1. Use ONLY the numbered sources provided. Every factual statement must cite its source as [S1] or [E2]; cite nothing else.
+2. Never invent limits, values, part names, recipe steps or procedures that are not in the sources. Do not add checks or
+   steps from general engineering knowledge, even common ones. If the sources have no checks, fix or release criteria
+   for this problem, write "not in the retrieved sources" for that part.
 3. Start your reply with "{DECLINE_PREFIX}" ONLY when the sources do not address the main question at all, and then say in one sentence what is missing. Do not guess.
    If the sources answer the main question but one detail is missing, answer what you can and write "not in the retrieved sources" for that detail. Do not decline the whole answer.
 4. Do not rank, rate or judge individual people.
-5. Recommend verifying the measurement first (SOP-MET-001) when the symptom is a single point with no trend.
-6. Tool release always requires the acceptance criteria in the SOP and an engineer's sign-off.
+5. Mention the measurement-first policy ONLY when the question describes a single point or one reading with no trend.
+   A trend, drift, step change after a known change, or a tool alarm is not a single point.
 
 For a troubleshooting question, answer in this structure, keeping only the parts the sources support:
 **Likely cause**, **Checks**, **Fix**, **Release criteria**, **Similar past events**.
+For a history question ("has TOOL had X before"), first say how many matching past events the sources show and list
+EVERY matching event ID with its date, then summarise what fixed them. Leave out events with a different root cause.
 For a procedure question, answer in one to three sentences with the citation.
 Be concise."""
 
@@ -217,12 +229,12 @@ def check_sql(sql: str) -> str:
 class Assistant:
     def __init__(self, search_fn, llm_fn, sql_fn=None, sop_index="sop", event_index="events",
                  k_sops=4, k_events=5, table_name="silver_ooc_events", sections_fn=None,
-                 expand_sections=EXPAND_SECTIONS):
+                 expand_sections=EXPAND_SECTIONS, k_events_history=10):
         """sections_fn(sop_id) -> list of SOP chunk dicts. When given, the top SOP is expanded
         with its key sections (parent-document retrieval), so release criteria are never missing."""
         self.search_fn, self.llm_fn, self.sql_fn = search_fn, llm_fn, sql_fn
         self.sop_index, self.event_index = sop_index, event_index
-        self.k_sops, self.k_events = k_sops, k_events
+        self.k_sops, self.k_events, self.k_events_history = k_sops, k_events, k_events_history
         self.table_name = table_name
         self.sections_fn, self.expand_sections = sections_fn, expand_sections
 
@@ -231,7 +243,9 @@ class Assistant:
         sop_hits = self.search_fn(self.sop_index, question, sop_f, self.k_sops)
         if self.sections_fn and sop_hits:
             sop_hits = expand_top_sop(sop_hits, self.sections_fn(sop_hits[0]["sop_id"]), self.expand_sections)
-        event_hits = self.search_fn(self.event_index, question, ev_f, self.k_events)
+        # History questions ask for every past occurrence on one tool, so they get a deeper event search.
+        k_ev = self.k_events_history if is_history(question) else self.k_events
+        event_hits = self.search_fn(self.event_index, question, ev_f, k_ev)
         return sop_hits, event_hits
 
     def ask(self, question: str) -> Answer:

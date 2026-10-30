@@ -9,6 +9,8 @@ The judge returns JSON; parsing is defensive because models sometimes wrap JSON 
 import json
 import re
 
+from .assistant import FAB_POLICY
+
 JUDGE_PROMPT = """You are grading an answer from a wafer-fab troubleshooting assistant. Be strict and literal.
 
 QUESTION:
@@ -16,6 +18,9 @@ QUESTION:
 
 EXPECTED POINTS (the answer should state each of these, in any wording):
 {points}
+
+FAB POLICY THE ASSISTANT IS ALLOWED TO STATE WITHOUT A SOURCE (stating these is supported):
+{policy}
 
 SOURCES THE ASSISTANT WAS GIVEN:
 {sources}
@@ -25,16 +30,29 @@ ANSWER TO GRADE:
 
 Grade two things.
 1. covered: for each expected point, in order, true if the answer states it (equivalent wording counts), else false.
+   For a point listing several event IDs, true only if the answer lists all of them.
 2. grounded: true if EVERY factual claim in the answer (causes, values, limits, steps, part names, event details) is supported by the sources above. A claim not found in the sources makes it false. Saying that something is "not in the retrieved sources" is not a claim.
 
 Reply with JSON only, no other text:
-{{"covered": [true, false, ...], "grounded": true, "unsupported_claims": ["..."], "reason": "one sentence"}}"""
+{{"covered": [true, false, ...], "grounded": true, "unsupported_claims": ["..."], "reason": "one short sentence"}}
+Keep the reason under 25 words."""
 
 
 def build_judge_messages(question: str, points: list, sources_text: str, answer: str) -> list:
     pts = "\n".join(f"{i}. {p}" for i, p in enumerate(points, 1))
-    content = JUDGE_PROMPT.format(question=question, points=pts, sources=sources_text or "(none)", answer=answer)
+    content = JUDGE_PROMPT.format(question=question, points=pts, policy=FAB_POLICY,
+                                 sources=sources_text or "(none)", answer=answer)
     return [{"role": "user", "content": content}]
+
+
+def _salvage(text: str):
+    """Recover covered/grounded from a reply cut off before the closing brace (token limit hit)."""
+    cov = re.search(r'"covered"\s*:\s*\[([^\]]*)\]', text)
+    grd = re.search(r'"grounded"\s*:\s*(true|false)', text)
+    if not (cov and grd):
+        return None
+    return {"covered": [x.strip() == "true" for x in cov.group(1).split(",") if x.strip()],
+            "grounded": grd.group(1) == "true", "reason": "(reply truncated; scores recovered)"}
 
 
 def parse_judgement(raw: str, n_points: int) -> dict:
@@ -45,6 +63,8 @@ def parse_judgement(raw: str, n_points: int) -> dict:
         data = json.loads(match.group(0)) if match else None
     except json.JSONDecodeError:
         data = None
+    if not isinstance(data, dict):
+        data = _salvage(text)
     if not isinstance(data, dict):
         return {"coverage": None, "grounded": None, "unsupported_claims": [], "reason": None,
                 "judge_error": f"unparseable judge output: {(raw or '')[:200]}"}

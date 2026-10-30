@@ -196,3 +196,29 @@ def test_full_run_logic_offline(data):
     assert m["questions_scored"] == 61 and m["routing_accuracy"] == 1.0
     assert m["acceptance_criteria_retrieved"] == 1.0
     assert m["groundedness_rate"] == 1.0 and m["judge_errors"] == 0
+
+
+def test_judge_salvages_truncated_reply():
+    from fabrag.judge import parse_judgement
+    j = parse_judgement('{"covered": [true, true, false], "grounded": true', 3)
+    assert j["coverage"] == 0.667 and j["grounded"] is True and j["judge_error"] is None
+    assert parse_judgement("", 3)["judge_error"].startswith("unparseable")
+
+
+def test_history_questions_get_deeper_event_search():
+    from fabrag.assistant import Assistant
+    calls = []
+    def search(index, q, f, k):
+        calls.append((index, k))
+        return []
+    bot = Assistant(search, lambda m: "x")
+    bot.retrieve("Has CMP-01 had pad glazing before, and what fixed it?")
+    bot.retrieve("Dishing is going up on CMP-03. Why?")
+    assert ("events", 10) in calls and ("events", 5) in calls
+
+
+def test_judge_sees_fab_policy():
+    from fabrag.assistant import FAB_POLICY, SYSTEM_PROMPT
+    from fabrag.judge import build_judge_messages
+    msg = build_judge_messages("q", ["p"], "src", "a")[0]["content"]
+    assert FAB_POLICY in msg and FAB_POLICY in SYSTEM_PROMPT

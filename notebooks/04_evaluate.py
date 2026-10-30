@@ -26,7 +26,7 @@ dbutils.widgets.text("schema", "fab_rag")
 dbutils.widgets.text("endpoint", "fab-rag-endpoint")
 dbutils.widgets.text("chat_model", "databricks-gpt-oss-120b")
 dbutils.widgets.text("judge_model", "databricks-gpt-oss-120b")
-dbutils.widgets.text("final_config", "hybrid_rerank_expand")
+dbutils.widgets.text("final_config", "hybrid_expand")  # hybrid_rerank_expand needs the reranker (not on Free Edition)
 
 catalog = dbutils.widgets.get("catalog")
 schema = dbutils.widgets.get("schema")
@@ -151,7 +151,7 @@ if final_config not in settings:
     final_config = fallback
 
 search_fn, sections_fn = CONFIGS[final_config]
-llm, judge_llm = make_llm_fn(w, chat_model), make_llm_fn(w, judge_model, max_tokens=800)
+llm, judge_llm = make_llm_fn(w, chat_model), make_llm_fn(w, judge_model, max_tokens=4000)  # reasoning model: needs room to think before the JSON
 bot = Assistant(search_fn, llm, sql_fn=make_sql_fn(spark), sections_fn=sections_fn, table_name=fq("silver_ooc_events"))
 
 run_id = time.strftime("%Y%m%d-%H%M%S")
@@ -202,6 +202,60 @@ log_mlflow(f"full_{final_config}", {"stage": "full", "config": final_config, "ch
                                      "judge_model": judge_model, "run_id": run_id}, final_metrics, pred_df.toPandas())
 print(f"Saved run {run_id}. Errors: {final_metrics['errors']}")
 display(spark.createDataFrame([(k, float(v) if v is not None else None) for k, v in final_metrics.items()],
+                              "metric string, value double"))
+
+# COMMAND ----------
+
+# MAGIC %md ## 2b. (Optional) Re-grade a saved run with the judge only
+# MAGIC Use this if the judge failed on a run: it rebuilds each answer's sources from the saved IDs
+# MAGIC and grades again, without generating new answers.
+
+# COMMAND ----------
+
+# Re-grade only the answers the judge failed on (coverage empty). Same saved answers, judge only.
+RUN_TO_REGRADE = run_id  # or paste an earlier run_id, e.g. "20261030-083342"
+judge_llm = make_llm_fn(w, judge_model, max_tokens=4000)
+
+sop_text = {r.chunk_id: r.asDict() for r in spark.table(fq("gold_sop_chunks")).select("chunk_id", "retrieval_text").collect()}
+evt_text = {r.event_id: r.asDict() for r in spark.table(fq("gold_event_chunks")).select("event_id", "retrieval_text").collect()}
+qmap = {q["qid"]: q for q in questions}
+rows = [r.asDict() for r in spark.table(fq("eval_predictions")).where(
+    f"run_id = '{RUN_TO_REGRADE}' AND expected_behavior = 'answer' AND type != 'aggregate' AND error IS NULL AND coverage IS NULL").collect()]
+print(f"{len(rows)} answers to re-grade")
+
+updates = []
+for r in sorted(rows, key=lambda r: r["qid"]):
+    q = qmap[r["qid"]]
+    if r["declined"]:
+        j = {"coverage": 0.0, "grounded": None, "reason": "declined", "judge_error": None}
+    else:
+        # Rebuild exactly the sources the assistant saw, from the IDs saved with the answer.
+        src = sources_text([sop_text[c] for c in r["retrieved_chunk_ids"] if c in sop_text],
+                           [evt_text[e] for e in r["retrieved_event_ids"] if e in evt_text])
+        for _ in range(2):  # one retry if the reply is still unusable
+            j = judge_answer(judge_llm, q["question"], q["expected_answer_points"], src, r["answer"])
+            if not j["judge_error"]:
+                break
+    updates.append((RUN_TO_REGRADE, r["qid"], j["coverage"], j["grounded"], j.get("reason") or j.get("judge_error")))
+    print(f"{r['qid']} {q['type']:<15} cov={j['coverage']} grounded={j['grounded']}")
+
+if updates:
+    spark.createDataFrame(updates, "run_id string, qid string, coverage double, grounded boolean, judge_reason string") \
+         .createOrReplaceTempView("_regrade")
+    spark.sql(f"""
+        MERGE INTO {fq('eval_predictions')} t USING _regrade s ON t.run_id = s.run_id AND t.qid = s.qid
+        WHEN MATCHED THEN UPDATE SET t.coverage = s.coverage, t.grounded = s.grounded, t.judge_reason = s.judge_reason
+    """)
+
+# Judge metrics for the whole run, read back from the table.
+judged = [{"type": r.type, "coverage": r.coverage, "grounded": r.grounded,
+           "judge_error": (r.judge_reason or "").startswith("unparseable")}
+          for r in spark.table(fq("eval_predictions")).where(
+              f"run_id = '{RUN_TO_REGRADE}' AND expected_behavior = 'answer' AND type != 'aggregate' AND error IS NULL").collect()]
+judge_results = judge_metrics(judged)
+log_mlflow(f"regrade_{RUN_TO_REGRADE}", {"stage": "regrade", "run_id": RUN_TO_REGRADE, "judge_model": judge_model}, judge_results)
+run_id = RUN_TO_REGRADE  # so section 4 analyses this run
+display(spark.createDataFrame([(k, float(v) if v is not None else None) for k, v in judge_results.items()],
                               "metric string, value double"))
 
 # COMMAND ----------

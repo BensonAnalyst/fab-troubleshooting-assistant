@@ -9,7 +9,7 @@
 
 # COMMAND ----------
 
-# MAGIC %pip install --quiet databricks-ai-search
+# MAGIC %pip install --quiet databricks-ai-search markdown
 
 # COMMAND ----------
 
@@ -21,7 +21,7 @@ dbutils.widgets.text("catalog", "workspace")
 dbutils.widgets.text("schema", "fab_rag")
 dbutils.widgets.text("endpoint", "fab-rag-endpoint")
 dbutils.widgets.text("chat_model", "databricks-gpt-oss-120b")
-dbutils.widgets.dropdown("rerank", "true", ["true", "false"])
+dbutils.widgets.dropdown("rerank", "false", ["true", "false"])  # the reranker is not available on Free Edition
 
 catalog = dbutils.widgets.get("catalog")
 schema = dbutils.widgets.get("schema")
